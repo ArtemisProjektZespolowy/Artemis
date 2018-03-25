@@ -1,0 +1,84 @@
+.navbar-wrapper{
+    background:#000;
+    opacity:0.7;
+    background: rgba(0,0,0,0.7);
+    position:fixed;
+    padding-bottom:0px;
+    width:100%;
+    z-index:100;
+}
+.navbar{
+    background:transparent;
+    margin-bottom:0px;
+    border:none;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #999;
+    font-weight: bold;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+
+
+.contact {
+    padding-top:30px;
+    padding-bottom:30px;
+    color:white;
+    background: #3b3b3b;
+}
+
+
+#RegBody { padding-top:75px;}
+
+#BodyGame { padding-top:75px;}
+#SuppBody { padding-top:40px;}
+#accMenager{ padding-top:75px;}
+#EmptyCard { padding-top:95px; 
+             margin-left: auto;
+             margin-right: auto;
+text-align: center;}
+
+#btmGameBuy {
+   
+    text-align: center;
+    color: white;
+    background-color: #399648;
+    padding: 3px 32px;
+    margin-left: 5px;
+    opacity: 0.8;
+}
+
+#textcolor {
+    color:white;
+    
+}
+#logoutcss{
+        color:red;
+        
+    
+}
