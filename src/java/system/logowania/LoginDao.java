@@ -50,6 +50,6 @@ public class LoginDao {
             e.printStackTrace();
         }
        
-        return "Incorrect email or password";
+        return "Nieprawidłowy email lub hasło.";
     }
 }
