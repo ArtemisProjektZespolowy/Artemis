@@ -40,16 +40,19 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
       
         
-        
+        // przygotowanie polaczenia
         Connection con = null;
         Statement statement = null;
         ResultSet resultSet = null;
 
+        // zabezpieczenie przez redundancja danych
         Boolean insert = true;
 
+        // kodowanie znaków przy odbieraniu i wysyłaniu wartości
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        // pobranie paramentów z formularza
         String imie = req.getParameter("imie");
         String nazwisko = req.getParameter("nazwisko");
         String telefon = req.getParameter("telefon");
@@ -90,27 +93,30 @@ public class RegisterServlet extends HttpServlet {
 //        }
         
         try {
-
+            //tworzenia połaczenia
             con = PolaczenieDB.getConnection();
             statement = con.createStatement();
             resultSet = statement.executeQuery("select telefon, email from konto");
             
-            
-            while (resultSet.next()) {
+          
+           
+           
+           while (resultSet.next()) {
                 String sprawdzTelefon = resultSet.getString("telefon");
                 String sprawdzEmail = resultSet.getString("email");
                
-                if (email.contains(sprawdzEmail)) {
-                    req.setAttribute("emailDB", email);
-                    req.setAttribute("zajetyEmail", "Konto o podanym adresie już istnieje");
-                    insert = false;
-                    break;
-                }else if(telefon.contains(sprawdzTelefon)){
+                if(telefon.contains(sprawdzTelefon)){
                     req.setAttribute("telefonDB", telefon);
                     req.setAttribute("zajetyTelefon", "Podany numer telefonu został już użyty");
                     insert = false;
                     break;
+                }else if (email.contains(sprawdzEmail)) {
+                    req.setAttribute("emailDB", email);
+                    req.setAttribute("zajetyEmail", "Konto o podanym adresie już istnieje");
+                    insert = false;
+                    break;
                 }
+               
             }
             con.close();
            

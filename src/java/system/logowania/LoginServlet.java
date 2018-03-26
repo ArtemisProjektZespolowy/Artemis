@@ -26,6 +26,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 private static final String PAGE = "sign_in.jsp";
+private static final String PAGE2 = "serverError.jsp";
+
 
 
 
@@ -86,7 +88,7 @@ private static final String PAGE = "sign_in.jsp";
         } catch (IOException e1) {
             req.setAttribute("errConn", "error with database connection");
         } catch (Exception e2) {
-            req.setAttribute("errConn", "error with database connection");
+            req.getRequestDispatcher(PAGE2).forward(req, resp);
         }
         
         

@@ -33,9 +33,7 @@
         <!-- Custom styles for this template -->
         <link href="./css/service.css" rel="stylesheet">
         
-    </head>
-    <!-- NAVBAR
-    ================================================== -->
+
 
     <body>
 
@@ -48,8 +46,7 @@
     <jsp:include page="header.jsp"/>
 
 <div class="container" id = "xd">
-        <!-- Carousel
-         ================================================== -->
+        
        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
