@@ -43,7 +43,15 @@
   height: 500px;
 }
 
+#obraz{
+    width:520px; /* you can use % */
+    height: 520px;
+   
+}
 
+#xd{
+    padding-top:100px;
+}
 
 .contact {
     padding-top:30px;

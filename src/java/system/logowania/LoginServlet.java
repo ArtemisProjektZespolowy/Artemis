@@ -70,9 +70,7 @@ private static final String PAGE = "sign_in.jsp";
 
             if (userValidate.equals("Admin") || userValidate.equals("Pracownik") || userValidate.equals("User") ) {
               session = req.getSession(); //Creating a session
-                session.setAttribute("usr", email); //setting session attribute
-                req.setAttribute("userName", email);
-                session.setAttribute("getEmail", email);
+                session.setAttribute("User", String.valueOf(email)); //setting session attribute
                 session.setAttribute("permissions", String.valueOf(userValidate));
                 if((userValidate.equals("User")))
                         session.setMaxInactiveInterval(10 * 60);

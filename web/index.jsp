@@ -22,9 +22,9 @@
         <title>Artemis</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-
-
+        <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet">
+        
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.2/owl.carousel.css">
@@ -32,6 +32,7 @@
 
         <!-- Custom styles for this template -->
         <link href="./css/service.css" rel="stylesheet">
+        
     </head>
     <!-- NAVBAR
     ================================================== -->
@@ -44,200 +45,38 @@
 
 
 
-        <!-- navigation panel -->
-        <div class="navbar-wrapper">
-            <div class="container">
-                <nav class="navbar navbar-inverse" role="navigation">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="index.jsp">Artemis</a>
-                        </div>
+    <jsp:include page="header.jsp"/>
 
-                        <div class="collapse navbar-collapse" id="navbar-collapse-main">
-                            <form class="navbar-form pull-left">
-                                <div class="input-group" style="max-width:100px;">
-                                    <input class="form-control" placeholder="SearchGame" name="srch-term" id="srch-term" type="text">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="index.jsp">Home</a></li>
-                                <li><a href="games.jsp">Games</a></li>
-                                <!-- <li><a href="giveaway.jsp">Giveaway</a></li> --->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Art<span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Images</a></li>
-                                        <li><a href="#">Moves</a></li>
-                                        <li><a href="#">Wallpaper</a></li>
-                                        <li><a href="#">Soundtrack</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Partnership</a></li>
-                                        <li><a href="#">Live chat suport</a></li>
-                                        <li><a href="contact_support.jsp">Contact support </a></li>
-                                        <li><a href="#">Work </a></li>
-                                    </ul>
-                                </li>
-
-
-
-                                <%
-                                    if (session.getAttribute("User") != null) {
-                                %> 
-
-
-                                <%}%>
-
-
-
-
-                                <%
-                                    if (session.getAttribute("Admin") != null) {
-
-                                %> 
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">AdminMenager<span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="accMenager.jsp">AccountMenager</a></li>
-                                        <li><a href="productMenager.jsp">ProductMenager</a></li>
-                                        <li><a href="raports.jsp">Raports</a></li>
-
-                                    </ul>
-                                </li>
-
-
-
-
-                                <%}%>
-
-                                <%
-                                    if (session.getAttribute("Pracownik") != null) {
-                                %> 
-
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">WorkerMenager<span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="productMenager.jsp">ProductMenager</a></li>
-                                        <li><a href="raports.jsp">Raports</a></li>
-
-
-                                    </ul>
-                                </li>
-
-
-
-
-                                <%}%>
-
-
-                                <%
-                                    if (session.getAttribute("Admin") == null && session.getAttribute("Pracownik") == null && session.getAttribute("User") == null) {
-                                %> 
-                                <li><a href="register.jsp">Register</a></li>
-                                <li><a href="sign_in.jsp">Sign in</a></li>
-
-                                <%}%>
-                                <%
-
-                                    Connection conn = null;
-                                    Statement stat = null;
-                                    ResultSet res = null;
-
-
-                                %>
-                                <%                         if (session.getAttribute("Admin") != null || session.getAttribute("Pracownik") != null || session.getAttribute("User") != null) {%>
-                                <li>   <form  action="shoppingcart" name="formBuy" method="post">
-                                        <button class="btn btn-large" id="btmGameBuy" name="iconCard" value="true" style=" background-color: lightslategrey; padding: 4px 8px; margin-right:12px; margin-top: 5px;" ><span style="color:#fff; font-size: 20px; margin-top: 0px; margin-left:9px; margin-right:12px;" class="glyphicon glyphicon-shopping-cart" ></span></button>
-                                    </form></li>
-                                <li style="color:lightskyblue; margin-top: 14px; font-size:17px; "> 
-
-                                    <%=(session.getAttribute("Admin") == null) ? "" : " | Welcome! " + session.getAttribute("Admin") + " |"%>
-                                    <%=(session.getAttribute("Pracownik") == null) ? "" : " | Welcome! " + session.getAttribute("Pracownik") + " |"%>
-                                    <%=(session.getAttribute("User") == null) ? "" : " | Welcome! " + session.getAttribute("User") + " |"%>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">MyPanel<span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-
-                                        <li><a href="orderHistory.jsp" style="color: #3aa343; font-weight: bold;" >My Order</a></li>
-                                        <li><a href="logout" style="color: #bc7820; font-weight: 600; font-size: 14px;  ">Logout!</a></li>
-
-                                    </ul>
-                                </li>
-
-
-                                <%}%>
-
-
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-            </div>
-        </div>
-
-
+<div class="container" id = "xd">
         <!-- Carousel
          ================================================== -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="https://i.imgur.com/3XYxFR7.png" alt="First slide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Horizon zero dawn</h1>
-                            <p> Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. <code>file://</code> Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Join us</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="https://i.imgur.com/gW0Pelq.png" alt="Second slide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Fortnite</h1>
-                            <p> Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="https://i.imgur.com/hoR3p9b.png" alt="Third slide">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Ashes of creation</h1>
-                            <p> Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Buy Game</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-        </div><!-- /.carousel -->
-
+       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/3XYxFR7.png" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/gW0Pelq.png" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/hoR3p9b.png" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+    </div>
 
 
         <!-- Marketing messaging and featurettes
@@ -286,7 +125,7 @@
                     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-responsive" src="https://i.imgur.com/3XYxFR7.png" alt="Generic placeholder image">
+                    <img class="featurette-image img-responsive" src="https://i.imgur.com/3XYxFR7.png" style="max-width: 350px; max-height: 350px;" alt="Generic placeholder image">
                 </div>
             </div>
 
@@ -294,7 +133,7 @@
 
             <div class="row featurette">
                 <div class="col-md-5">
-                    <img class="featurette-image img-responsive" src="https://i.imgur.com/gW0Pelq.png" alt="Generic placeholder image">
+                    <img class="featurette-image img-responsive" src="https://i.imgur.com/gW0Pelq.png" style="max-width: 350px; max-height: 350px;" alt="Generic placeholder image">
                 </div>
                 <div class="col-md-7">
                     <h2 class="featurette-heading">Fortnite<span class="text-muted">Open Beta! </span></h2>
@@ -310,7 +149,7 @@
                     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-responsive" src="https://i.imgur.com/hoR3p9b.png" alt="Generic placeholder image">
+                    <img class="featurette-image img-responsive" src="https://i.imgur.com/hoR3p9b.png" style="max-width: 350px; max-height: 350px;" alt="Generic placeholder image">
                 </div>
             </div>
 
@@ -386,7 +225,7 @@
                         <h2 id="details">Choose your package</h2>
                     </div><br>
 
-
+<div class="row">
                     <!-- Pack 1-->
                     <div class="col-md-3" id="home-box">
                         <div class="pricing_header">
@@ -476,7 +315,7 @@
                     </div> 
                 </div>  
             </div>
-
+            </div>
             <hr class="featurette-divider">
 
 
