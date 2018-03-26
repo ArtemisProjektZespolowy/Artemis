@@ -74,3 +74,8 @@
     </div>
 </nav>
 </header>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
+    <script>
+        new WOW().init();
+    </script> 
