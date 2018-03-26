@@ -54,7 +54,7 @@
             </li>
              <%}else{%>
              <li class="nav-item">
-                <a class="nav-link" href="sign_in.jsp"><%="Welcome " +  session.getAttribute("User")%></a>
+                <a class="nav-link" href="#"><%="Welcome " +  session.getAttribute("User")%></a>
             </li>
              <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My account</a>
