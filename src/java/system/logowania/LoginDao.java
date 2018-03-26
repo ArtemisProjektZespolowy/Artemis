@@ -38,11 +38,11 @@ public class LoginDao {
                 rangaDB = resultSet.getString("ranga");
 
                 if (email.equals(emailDB) && haslo.equals(hasloDB) && rangaDB.equals("Admin")) {
-                    return "Admin_Role";
+                    return "Admin";
                 } else if (email.equals(emailDB) && haslo.equals(hasloDB) && rangaDB.equals("Pracownik")) {
-                    return "Pracownik_Role";
+                    return "Pracownik";
                 } else if (email.equals(emailDB) && haslo.equals(hasloDB) && rangaDB.equals("User")) {
-                    return "User_Role";
+                    return "User";
                 }
             }
              con.close();

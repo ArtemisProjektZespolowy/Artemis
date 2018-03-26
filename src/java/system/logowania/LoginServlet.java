@@ -68,33 +68,18 @@ private static final String PAGE = "sign_in.jsp";
         try {
             String userValidate = loginDao.authenticateUser(loginBean);
 
-            if (userValidate.equals("Admin_Role")) {
+            if (userValidate.equals("Admin") || userValidate.equals("Pracownik") || userValidate.equals("User") ) {
               session = req.getSession(); //Creating a session
-                session.setAttribute("Admin", email); //setting session attribute
+                session.setAttribute("usr", email); //setting session attribute
                 req.setAttribute("userName", email);
                 session.setAttribute("getEmail", email);
+                session.setAttribute("permissions", String.valueOf(userValidate));
+                if((userValidate.equals("User")))
+                        session.setMaxInactiveInterval(10 * 60);
 
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
-            } else if (userValidate.equals("Pracownik_Role")) {
-                
-
-                 session = req.getSession();
-                session.setAttribute("Pracownik", email);
-                session.setAttribute("getEmail", email);
-                req.setAttribute("userName", email);
-
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
-            } else if (userValidate.equals("User_Role")) {
-                
-
-                 session = req.getSession();
-                session.setMaxInactiveInterval(10 * 60);
-                session.setAttribute("User", email);
-                session.setAttribute("getEmail", email);
-                req.setAttribute("userName", email);
-
-                req.getRequestDispatcher("index.jsp").forward(req, resp);
-            } else {
+                 } 
+             else {
                 req.setAttribute("errMessageLogowanie", userValidate);
                 
 
