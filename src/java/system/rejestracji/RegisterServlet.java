@@ -29,6 +29,7 @@ import src.PolaczenieDB;
 public class RegisterServlet extends HttpServlet {
 
     private static final String PAGE = "register.jsp";
+    private static final String PAGE2 = "serverError.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -98,18 +99,18 @@ public class RegisterServlet extends HttpServlet {
             while (resultSet.next()) {
                 String sprawdzTelefon = resultSet.getString("telefon");
                 String sprawdzEmail = resultSet.getString("email");
-                if(telefon.contains(sprawdzTelefon)){
-                    req.setAttribute("telefonDB", telefon);
-                    req.setAttribute("zajetyTelefon", "Podany numer telefonu został już użyty");
-                    insert = false;
-                    break;
-                }else if (email.contains(sprawdzEmail)) {
+               
+                if (email.contains(sprawdzEmail)) {
                     req.setAttribute("emailDB", email);
                     req.setAttribute("zajetyEmail", "Konto o podanym adresie już istnieje");
                     insert = false;
                     break;
+                }else if(telefon.contains(sprawdzTelefon)){
+                    req.setAttribute("telefonDB", telefon);
+                    req.setAttribute("zajetyTelefon", "Podany numer telefonu został już użyty");
+                    insert = false;
+                    break;
                 }
-               
             }
             con.close();
            
@@ -146,7 +147,7 @@ public class RegisterServlet extends HttpServlet {
                 
             } else {
                 req.setAttribute("registerFail", "Rejestracja zakończyła się niepowodzeniem");
-                 req.getRequestDispatcher(PAGE).include(req, resp); 
+                 req.getRequestDispatcher(PAGE2).include(req, resp); 
             }
               
         }else{   

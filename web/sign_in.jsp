@@ -57,8 +57,8 @@
                         <button class="button_1" type="submit" value="Login" >Zaloguj</button>
                          
 		</form>
-                <span style="color:red ; font-size:18px; font-family: 'Source Sans Pro', sans-serif; "><%=(request.getAttribute("errMessageLogowanie") == null) ? "" : request.getAttribute("errMessageLogowanie")%></span>
-                         <span style="color:red"><%=(request.getAttribute("errConn") == null) ? "" : request.getAttribute("errConn")%></span>
+                <span style="color:white ; font-size:18px; font-family: 'Source Sans Pro', sans-serif; "><%=(request.getAttribute("errMessageLogowanie") == null) ? "" : request.getAttribute("errMessageLogowanie")%></span>
+                         <span style="color:white"><%=(request.getAttribute("errConn") == null) ? "" : request.getAttribute("errConn")%></span>
 	
 	<ul class="bg-bubbles">
 		<li></li>

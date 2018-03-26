@@ -46,22 +46,27 @@
 <jsp:include page="header.jsp"/>
     
 
-        --->                        
-        <div class="body_1">
-            <div class="wrapper">
-                <div class="container_1">
-                    <h1>Zarejestruj się</h1>
+                        
+<div class="body_1">
+    <div class="wrapper">
+        <div class="container_1">
+            <h1>Zarejestruj się</h1>
+            <div class="form-group">
+                <form class="form_1" name="sentMessage" method="post" action="register" >
                     <div class="form-group">
-                        <form class="form_1" name="sentMessage" method="post" action="register" >
-                            <div class="form-group">
-                                <div class="row">
-                                <input type="text" value="<%=(request.getAttribute("imie") == null) ? "" : request.getAttribute("imie")%>" name="imie"  id="imie" placeholder="Podaj Imie" pattern="([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+){3,20}" title="Imie może się składać tylko z liter o długości 3-20" required>
-                                <input type="text" value="<%=(request.getAttribute("nazwisko") == null) ? "" : request.getAttribute("nazwisko")%>" name="nazwisko"  id="surname" placeholder="Podaj Nazwisko" pattern="([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+){3,40}" title="Nazwisko może się składać tylko z liter o długości 3-40" required >
-                                </div>
-                                <input type="text" value="<%=(request.getAttribute("email") == null) ? "" : request.getAttribute("email")%>" name="email"  id="email" placeholder="Podaj Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="np. JanKowalski@gmail.com"  required>
-                                <input type="tel" value="<%=(request.getAttribute("telefon") == null) ? "" : request.getAttribute("telefon")%>" name="telefon"  placeholder="Podaj Telefon" id="phone" pattern="[0-9]{9}" required>
-                                <span style="color:red; font-size: 15px; text-align: center;"><%=(request.getAttribute("zajetyTelefon") == null) ? "" : request.getAttribute("zajetyTelefon")%></span>
-                            </div>  
+                        <div class="row">
+                            <input type="text" value="<%=(request.getAttribute("imie") == null) ? "" : request.getAttribute("imie")%>" name="imie"  id="imie" placeholder="Podaj Imie" pattern="([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+){3,20}" title="Imie może się składać tylko z liter o długości 3-20" required>
+                            <input type="text" value="<%=(request.getAttribute("nazwisko") == null) ? "" : request.getAttribute("nazwisko")%>" name="nazwisko"  id="surname" placeholder="Podaj Nazwisko" pattern="([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+){3,40}" title="Nazwisko może się składać tylko z liter o długości 3-40" required >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value="<%=(request.getAttribute("email") == null) ? "" : request.getAttribute("email")%>" name="email"  id="email" placeholder="Podaj Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="np. JanKowalski@gmail.com"  required>
+                            <span style="color:white; font-size: 18px; text-align: center;"><%=(request.getAttribute("zajetyEmail") == null) ? "" : request.getAttribute("zajetyEmail")%></span>
+                        </div> 
+                        <div class="form-group">
+                            <input type="tel" value="<%=(request.getAttribute("telefon") == null) ? "" : request.getAttribute("telefon")%>" name="telefon"  placeholder="Podaj Telefon" id="phone" pattern="[0-9]{9}" required>
+                            <span style="color:white; font-size: 18px; text-align: center;"><%=(request.getAttribute("zajetyTelefon") == null) ? "" : request.getAttribute("zajetyTelefon")%></span>
+                        </div>  
+                    </div>  
 
 
                             <div class="row">
@@ -74,7 +79,7 @@
                             <div class="form-group">
                                 <input type="text" value="<%=(request.getAttribute("nr_domu") == null) ? "" : request.getAttribute("nr_domu")%>" name="nr_domu"  placeholder="Podaj Nr Domu / Mieszkania" id="nr_domu" pattern="([0-9a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+){3,40}" title="Nazwa miasta może się składać tylko z liter i cyfr o długości 3-40" required>
                                 <input type="text" value="<%=(request.getAttribute("ulica") == null) ? "" : request.getAttribute("ulica")%>" name="ulica"  placeholder="Podaj Ulice" id="ulica" pattern="([0-9a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]+){3,40}" title="Nazwa miasta może się składać tylko z liter i cyfr o długości 3-40" required>
-                                <span style="color:red; font-size: 15px; text-align: center;"><%=(request.getAttribute("zajetyEmail") == null) ? "" : request.getAttribute("zajetyEmail")%></span>
+                                
                             </div>
 
 

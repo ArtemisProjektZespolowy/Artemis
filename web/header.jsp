@@ -21,7 +21,7 @@
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="3">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Games</a>
@@ -47,10 +47,10 @@
             </li>-->
            <% if(session.getAttribute("permissions") == null){%>
             <li class="nav-item">
-                <a class="nav-link" href="#">Register</a>
+                <a class="nav-link" href="register.jsp">Zarejestruj</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="sign_in.jsp">Sign in</a>
+                <a class="nav-link" href="sign_in.jsp">Zaloguj</a>
             </li>
              <%}else{%>
              <li class="nav-item">
@@ -63,7 +63,11 @@
                                         <li><a href="#">Moves</a></li>
                                         <li><a href="#">Wallpaper</a></li>
                                         <li><a href="#">Soundtrack</a></li>
+                                        
                                     </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="logout">Wyloguj</a>
             </li>
             <%}%>
         </ul>
