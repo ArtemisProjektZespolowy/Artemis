@@ -74,8 +74,11 @@
     </div>
 </nav>
 </header>
-    <script type="text/javascript" src="js/popper.min.js"></script>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <script src="https://mdbootstrap.com/previews/docs/latest/js/bootstrap.min.js"></script>
     <script src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
-    <script>
+    <script src="https://mdbootstrap.com/previews/docs/latest/js/jarallax.js"></script>
+   
         new WOW().init();
     </script> 
