@@ -105,14 +105,14 @@ public class RegisterServlet extends HttpServlet {
                 String sprawdzTelefon = resultSet.getString("telefon");
                 String sprawdzEmail = resultSet.getString("email");
                
-                if(telefon.contains(sprawdzTelefon)){
-                    req.setAttribute("telefonDB", telefon);
-                    req.setAttribute("zajetyTelefon", "Podany numer telefonu został już użyty");
-                    insert = false;
-                    break;
-                }else if (email.contains(sprawdzEmail)) {
+               if (email.contains(sprawdzEmail)) {
                     req.setAttribute("emailDB", email);
                     req.setAttribute("zajetyEmail", "Konto o podanym adresie już istnieje");
+                    insert = false;
+                    break;
+                }else if(telefon.contains(sprawdzTelefon)){
+                    req.setAttribute("telefonDB", telefon);
+                    req.setAttribute("zajetyTelefon", "Podany numer telefonu został już użyty");
                     insert = false;
                     break;
                 }
