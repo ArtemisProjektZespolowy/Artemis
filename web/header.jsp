@@ -1,4 +1,8 @@
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="src.PolaczenieDB"%>
+<%@page import="java.sql.Connection"%>
 <%@page import="java.util.TreeMap"%>
 <%@page import="shopping.cart.Bean_Ilosc"%>
 <%@page import="shopping.cart.Bean_ID"%>
@@ -34,18 +38,21 @@
                         <a class="nav-link" href="#">Art</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="support.jsp">Contact</a>
                     </li>
                 </ul>
 
-                <%
+               
+
+                <ul class="s navbar-nav ml-auto nav-flex-icons">
+                    
+                     <%
                     Map<Bean_ID, Bean_Ilosc> koszyk = (Map<Bean_ID, Bean_Ilosc>) session.getAttribute("koszyk");
                     if (koszyk == null) {
                         koszyk = new TreeMap<>();
                     }
-                %>
-
-                <ul class="s navbar-nav ml-auto nav-flex-icons">
+                    %>
+                    
                     <li class="space nav-item">
 
                         <a  href="shoppingCard.jsp" class="waves-effect waves-light fa-stack fa-1x has-badge" data-count="<%out.print(koszyk.size()); %>">
@@ -53,13 +60,7 @@
                         </a>
                     </li>
 
-
-                    <li class="nav-item">
-
-                        <span class=" waves-effect waves-light fa-stack fa-1x has-badge" data-count="10">
-                            <i class="fa fa-envelope fa-stack fa-inverse"></i>
-                        </span>
-                    </li>
+                  
 
 
                     <% if (session.getAttribute("permissions") == null) {%>
@@ -70,6 +71,23 @@
                         <a class="nav-link" href="sign_in.jsp">Zaloguj</a>
                     </li>
                     <%} else {%>
+                          <%
+                        Connection conn = PolaczenieDB.getConnection();
+                        Statement stat = conn.createStatement();
+          
+                       ResultSet res = null;
+                       String data = "select count(id_wiadomosci) as nowe_wiadomosci from poczta where (email_nadawcy='"+session.getAttribute("User")+"' and (status_nadawcy = false and status_odbiorcy = true))  or (email_odbiorcy='"+session.getAttribute("User")+"' and (status_nadawcy = true and status_odbiorcy = false))";
+                       res = stat.executeQuery(data);
+                       res.next();
+                        %>
+                    <li class="nav-item">
+
+                        <a href="message.jsp"  class=" waves-effect waves-light fa-stack fa-1x has-badge" data-count="<%=res.getInt("nowe_wiadomosci") %>">
+                            <i class="fa fa-envelope fa-stack fa-inverse"></i>
+                        </a>
+                    </li>
+                    <%res.close(); conn.close(); %>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#"><%="Welcome " + session.getAttribute("User")%></a>
                     </li>

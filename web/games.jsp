@@ -28,7 +28,7 @@
     <!-- NAVBAR
     ================================================== -->
 
-    <body style="background-color:#7c6767;">
+    <body>
 
     <jsp:include page="header.jsp"/>
     

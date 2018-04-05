@@ -1,0 +1,97 @@
+.body{
+       background: #50a3a2;
+ 
+}
+
+
+.container{
+    padding-top: 5%; 
+}
+
+
+.lista{
+    background-color: rgba(0,0,0,0.3);   
+}
+
+
+.new:hover{
+    background-color: #009edf;   
+}
+
+
+.list-group-mine .list-group-item {
+  background-color: rgba(0,0,0,0.5);
+  border-top: 1px solid white;
+  border-left-color: black;
+  border-right-color: black;
+  color: white;
+}
+
+.list-group-mine .list-group-item:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.btn{
+        background-color: red;
+        color: red;
+    
+}
+
+.btn-primary  .btn-primary me {
+    background: red;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.btn-sample { 
+  color: #ffffff; 
+  background-color: #3F92B8;
+  
+} 
+ 
+.space{
+       padding-right: 20px;
+       padding-left: 20px;
+} 
+
+
+.wrap {
+  height: 100vh;
+  display: flex;
+}
+
+main {
+  flex: 1;
+  display: flex;
+}
+ 
+aside, article {
+  overflow-y: scroll;
+  padding: 2em;
+}
+ 
+aside {
+  flex: 1;
+}
+ 
+article {
+  flex: 2;
+}
+
+.fa-stack_2[data-count]:after{
+  position:relative;
+  right:-30%;
+  top:-10%;
+  content: attr(data-count);
+  font-size:80%;
+  padding:.6em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-radius:999px;
+  line-height:.45em;
+  color: white;
+  background:rgba(200,0,0,.75);
+  text-align:center;
+  min-width:10em;
+  font-weight:bold;
+
+}

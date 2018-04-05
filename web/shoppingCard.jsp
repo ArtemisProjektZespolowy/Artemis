@@ -1,5 +1,6 @@
 
 
+<%@page import="java.util.TreeMap"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.DecimalFormatSymbols"%>
 <%@page import="java.util.Currency"%>
@@ -46,8 +47,7 @@
             Statement stat2 = conn.createStatement();
             ResultSet res = null;
             ResultSet res2 = null;
-            conn = PolaczenieDB.getConnection();
-            stat = conn.createStatement();
+           
 
             double suma = 0;
             double cena = 0;
@@ -77,7 +77,12 @@
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
 
                     <% if (true) {
+                        
+                        
                             Map<Bean_ID, Bean_Ilosc> koszyk = (Map<Bean_ID, Bean_Ilosc>) session.getAttribute("koszyk");
+                            if (koszyk == null) {
+                                 koszyk = new TreeMap<>();
+                            }
                             if (koszyk.size() != 0) {%>
 
                     <%   int iteracja = 0;
@@ -95,10 +100,13 @@
                         <thead>
                             <tr>
                                 <th>Produkt</th>
+                                <th> </th>
                                 <th style=" text-align: center;" >Ilość</th>
+                                <th> </th>
                                 <th class="text-center">Cena jedn.</th>
                                 <th class="text-center">Cena</th>
                                 <th> </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -133,6 +141,13 @@
                                             <span>Status: </span><%if (res2.getInt("dostepnosc") != 0) {%><span class="text-success"><strong>Dostępny</strong></span><%} else {%><span class="text-danger"><strong>Niedostepny</strong></span><%}%>
                                         </div>
                                     </div></td>
+                                    
+                                     <td class="td-space-minus-plus">
+                                         <form id="#" action="iloscproduktu" method="post">                             
+                                        <button class="btn-info button-minus" id="#" name="minus" value="<%=res.getInt("id_produktu")%>">-</button>
+                                    </form>
+                                     </td>
+                                     
                                 <td class="td-space-2" style=" text-align: center;" >
                                     <script>
                                         <%out.println("function " + "update" + iteracja + "()");%> {
@@ -140,14 +155,21 @@
                                         }
                                     </script>
 
-                                    <form  id="<%=iteracja%>" action="iloscproduktu" method="post">                             
-                                        <button class="btn-info button-minus" id="1" name="minus" value="<%=res.getInt("id_produktu")%>" >-</button>
+                                            
+                                    
+
+                                    <form  id="<%=iteracja%>" action="iloscproduktu" method="post">   
                                         <input  name="suppID" type="hidden" value="<%=res.getInt("id_produktu")%>" ></input>
                                         <input class="input-ilosc" type="text" id="number" name="inputUpdate"  value="<%out.print(ilosc);%>" onfocusout="<%out.println("update" + iteracja + "()");%>"></input>
-                                        <button class="btn-info button-plus" id="1" name="plus"  value="<%=res.getInt("id_produktu")%>" >+</button>
-
                                     </form>
 
+                                   
+                                      
+                                </td>
+                                <td class="td-space-minus-plus">
+                                    <form  id="#" action="iloscproduktu" method="post">  
+                                        <button class="btn-info button-plus" id="#" name="plus"  value="<%=res.getInt("id_produktu")%>" >+</button>
+                                    </form
                                 </td>
 
                                 <td class=" td-space-3"><strong><%out.println(cenaFormat);%></strong></td>

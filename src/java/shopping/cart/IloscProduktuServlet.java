@@ -36,6 +36,7 @@ public class IloscProduktuServlet extends HttpServlet {
 
         int baseIlosc = 0;
         PrintWriter out = resp.getWriter();
+
         
          
         
@@ -46,7 +47,7 @@ public class IloscProduktuServlet extends HttpServlet {
             for (Iterator iterator = entrySet.iterator(); iterator.hasNext();) {
                 Map.Entry<Integer, Integer> entry = (Map.Entry<Integer, Integer>) iterator.next();
 
-                if (req.getParameter("minus") != null ) {
+                if (req.getParameter("minus") != null && req.getParameter("plus") == null) {
                     int minus = Integer.parseInt(req.getParameter("minus"));
                     if (entry.getKey().equals(minus)) {
                         baseIlosc = entry.getValue();
@@ -61,7 +62,7 @@ public class IloscProduktuServlet extends HttpServlet {
                     }
                 } else {
                 }
-                if (req.getParameter("plus") != null) {
+                if (req.getParameter("plus") != null && req.getParameter("minus") == null) {
                         
                     baseIlosc = entry.getValue();
                     baseIlosc++;
