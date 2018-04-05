@@ -4,6 +4,7 @@
     Author     : Iluvris
 --%>
 
+<%@page import="java.util.StringTokenizer"%>
 <%@page import="src.PolaczenieDB"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -21,53 +22,407 @@
 
         <title>Artemis</title>
 
-    
-         <style>
-  /* Make the image fully responsive */
-  .carousel-inner img {
-      width: 100%;
-      height: 100%;
-  }
-  </style>
+        <!-- Bootstrap core CSS -->
+        <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet">
+        
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.2/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.2/owl.theme.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="./css/service.css" rel="stylesheet">
+        
 
 
     <body>
 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/holder/2.4.0/holder.js"></script>
+
+
+
     <jsp:include page="header.jsp"/>
 
-
-  <div id="demo" class="carousel slide" data-ride="carousel">
-
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-  
-  <!-- The slideshow -->
+<div class="container" id = "xd">
+    <div class ="row">
+        <div class="col-sm-7">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://i.imgur.com/3XYxFR7.png" alt="Los Angeles" width="1100" height="500">
+      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/7eoCboV.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img src="https://i.imgur.com/3XYxFR7.png" alt="Chicago" width="1100" height="500">
+      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/GCQtdtD.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img src="https://i.imgur.com/3XYxFR7.png" alt="New York" width="1100" height="500">
+      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/3OHSlyc.jpg" alt="Third slide">
     </div>
   </div>
-  
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="fa fa-angle-left"></span>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="fa fa-angle-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="fa fa-angle-right"></span>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="fa fa-angle-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
   </a>
 </div>
+    </div>
+    <div class ="col-sm-5">
+        <div class="col">
+       <img src="http://via.placeholder.com/525x200" id="obrazek">
+       <img src="http://via.placeholder.com/525x200" style="margin-top:8%;"  id = "obrazek">
+        </div>
+    </div>
+    </div>
+</div>
 
-</body>
+    
+        
+
+        <!-- Marketing messaging and featurettes
+        ================================================== -->
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+
+        <div class="container marketing">
+
+            <a class="text-muted" href="#"><h3  style="font-weight: bold">Najpopularniejsze <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+            <hr class="featurette-divider" style="margin-left: -10px">
+            <div class="row">
+            <%int iteracja = 0;
+            int currentRow = 1;
+                                  Connection conn = null;
+                                  Statement stat = null;
+                                  ResultSet res = null;
+                                  conn = PolaczenieDB.getConnection();
+                                  stat = conn.createStatement();
+                                  String data = "select * from produkt order by random() limit 4";
+                                  res = stat.executeQuery(data);
+                                  while(res.next()){
+                                      String nazwa = res.getString("nazwa");
+                                      iteracja++;
+                                  %>
+                                  <script>
+               
+
+            <%out.println("function " + "update" + iteracja +""+ currentRow + "()");%> {
+            document.getElementById("<%=iteracja+""+currentRow%>").submit();
+             }
+             
+        </script>
+                                  
+                                  <div class="row" id="<%=currentRow%>">
+ 
+        <form id="<%=iteracja+""+currentRow%>" action="more" name="formMore" method="get"><a name="id" onclick="<%out.println("update" + iteracja +""+ currentRow + "()");%>"><div class="col-md-12 " style=" padding-left: 8%;padding-right: 8%;" >
+        <div  class="card card-image" style="background-color:#00685c; min-height: 20%;height: 262px;width:262px;  opacity: 0.9;">
+            <div class="text-white text-center py-12 px-12 my-12">
+                <div>
+                    <%int currentId=res.getInt("id_produktu");%>
+                    <div id="products" class="item  col-xs-12 col-lg-12" >
+                        <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
+                            <%if(res.getString("nazwa").length()>22)
+                            {String shortenedName;
+                            
+                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            out.println(shortenedName); %></h5><% 
+                                
+                            }else{%>
+                            <% out.println(res.getString("nazwa")); %></h6><%}%>
+                    
+                                    <h8 id="mid" name="platforma" class="group inner list-group-item-heading" >
+                                    <% out.println(res.getString("platforma"));%></h8>
+                        <div class="thumbnail" >
+                            <% String obrazek = res.getString("obraz");
+                               StringTokenizer stringTokenizer = new StringTokenizer(obrazek, ", ");
+                               if(stringTokenizer.hasMoreElements())
+                               obrazek=stringTokenizer.nextToken();
+                            %>
+                            <img  src="<%=obrazek%>"/>
+                         <input name="id" type="hidden" value="<%=currentId%>">
+                            <div class="caption">
+                                
+                                
+                                <div class="row" id="mid">
+                                    
+                                    <div class="col-xs-12 col-md-12">
+                                          </a></form>
+                                        <form  action="shoppingcart" name="formBuy" method="post">
+                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                                <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
+                                    </div>                                 
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                          </div> 
+</div>
+                    
+                    <% }conn.close();%>
+</div>
+
+
+                                    <hr class="featurette-divider" style="margin-left: -10px">
+               
+                                    
+        <a class="text-muted" href="#"><h3  style="font-weight: bold">Nowości <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+            <hr class="featurette-divider" style="margin-left: -10px">
+            <div class="row">
+            <%                    
+                                  iteracja=0;
+                                  currentRow = 2;
+                                  conn = PolaczenieDB.getConnection();
+                                  stat = conn.createStatement();
+                                  data = "select * from produkt order by random() limit 4";
+                                  res = stat.executeQuery(data);
+                                  while(res.next()){
+                                      String nazwa = res.getString("nazwa");
+                                      iteracja++;
+                                  %>
+                                   <script>
+               
+
+            <%out.println("function " + "update" + iteracja +""+ currentRow + "()");%> {
+            document.getElementById("<%=iteracja+""+currentRow%>").submit();
+             }
+             
+        </script>                                 
+                                  
+                                  <div class="row">
+ 
+        <form id="<%=iteracja+""+currentRow%>" action="more" name="formMore" method="get"><a name="id" onclick="<%out.println("update" + iteracja +""+ currentRow + "()");%>"><div class="col-md-12 " style=" padding-left: 8%;padding-right: 8%;" >
+        <div  class="card card-image" style="background-color:#00685c; min-height: 20%;height: 262px;width:262px;  opacity: 0.9;">
+            <div class="text-white text-center py-12 px-12 my-12">
+                <div>
+                    <%int currentId=res.getInt("id_produktu");%>
+                    <div id="products" class="item  col-xs-12 col-lg-12" >
+                        <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
+                            <%if(res.getString("nazwa").length()>22)
+                            {String shortenedName;
+                            
+                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            out.println(shortenedName); %></h5><% 
+                                
+                            }else{%>
+                            <% out.println(res.getString("nazwa")); %></h6><%}%>
+                    
+                                    <h8 id="mid" name="platforma" class="group inner list-group-item-heading" >
+                                    <% out.println(res.getString("platforma"));%></h8>
+                        <div class="thumbnail" >
+                            <% String obrazek = res.getString("obraz");
+                               StringTokenizer stringTokenizer = new StringTokenizer(obrazek, ", ");
+                               if(stringTokenizer.hasMoreElements())
+                               obrazek=stringTokenizer.nextToken();
+                            %>
+                            <img  src="<%=obrazek%>"/>
+                         <input name="id" type="hidden" value="<%=currentId%>">
+                            <div class="caption">
+                                
+                                
+                                <div class="row" id="mid">
+                                    
+                                    <div class="col-xs-12 col-md-12">
+                                          </a></form>
+                                        <form  action="shoppingcart" name="formBuy" method="post">
+                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                                <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
+                                    </div>                                 
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                          </div> 
+</div>
+                    
+                    <% }conn.close();%>
+</div>                            
+
+                                    <hr class="featurette-divider" style="margin-left: -10px">
+               
+                                    
+        <a class="text-muted" href="#"><h3  style="font-weight: bold">Gry z platformy Steam <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+            <hr class="featurette-divider" style="margin-left: -10px">
+            <div class="row">
+            <%                    
+                                  iteracja=0;
+                                  currentRow = 3;
+                                  conn = PolaczenieDB.getConnection();
+                                  stat = conn.createStatement();
+                                  data = "select * from produkt order by random() limit 4";
+                                  res = stat.executeQuery(data);
+                                  while(res.next()){
+                                      String nazwa = res.getString("nazwa");
+                                      iteracja++;
+                                  %>
+                                   <script>
+               
+
+            <%out.println("function " + "update" + iteracja +""+ currentRow + "()");%> {
+            document.getElementById("<%=iteracja+""+currentRow%>").submit();
+             }
+             
+        </script>                                 
+                                  
+                                  <div class="row">
+ 
+        <form id="<%=iteracja+""+currentRow%>" action="more" name="formMore" method="get"><a name="id" onclick="<%out.println("update" + iteracja +""+ currentRow + "()");%>"><div class="col-md-12 " style=" padding-left: 8%;padding-right: 8%;" >
+        <div  class="card card-image" style="background-color:#00685c; min-height: 20%;height: 262px;width:262px;  opacity: 0.9;">
+            <div class="text-white text-center py-12 px-12 my-12">
+                <div>
+                    <%int currentId=res.getInt("id_produktu");%>
+                    <div id="products" class="item  col-xs-12 col-lg-12" >
+                        <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
+                            <%if(res.getString("nazwa").length()>22)
+                            {String shortenedName;
+                            
+                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            out.println(shortenedName); %></h5><% 
+                                
+                            }else{%>
+                            <% out.println(res.getString("nazwa")); %></h6><%}%>
+                    
+                                    <h8 id="mid" name="platforma" class="group inner list-group-item-heading" >
+                                    <% out.println(res.getString("platforma"));%></h8>
+                        <div class="thumbnail" >
+                            <% String obrazek = res.getString("obraz");
+                               StringTokenizer stringTokenizer = new StringTokenizer(obrazek, ", ");
+                               if(stringTokenizer.hasMoreElements())
+                               obrazek=stringTokenizer.nextToken();
+                            %>
+                            <img  src="<%=obrazek%>"/>
+                         <input name="id" type="hidden" value="<%=currentId%>">
+                            <div class="caption">
+                                
+                                
+                                <div class="row" id="mid">
+                                    
+                                    <div class="col-xs-12 col-md-12">
+                                          </a></form>
+                                        <form  action="shoppingcart" name="formBuy" method="post">
+                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                                <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
+                                    </div>                                 
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                          </div> 
+</div>
+                    
+                    <% }conn.close();%>
+</div> 
+
+            <hr class="featurette-divider">
+
+        <a class="text-muted" href="#"><h3  style="font-weight: bold">Gry za mniej niż 20zł <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+            <hr class="featurette-divider" style="margin-left: -10px">
+            <div class="row">
+            <%                    
+                                  iteracja=0;
+                                  currentRow = 4;
+                                  conn = PolaczenieDB.getConnection();
+                                  stat = conn.createStatement();
+                                  data = "select * from produkt order by random() limit 4";
+                                  res = stat.executeQuery(data);
+                                  while(res.next()){
+                                      String nazwa = res.getString("nazwa");
+                                      iteracja++;
+                                  %>
+                                   <script>
+               
+
+            <%out.println("function " + "update" + iteracja +""+ currentRow + "()");%> {
+            document.getElementById("<%=iteracja+""+currentRow%>").submit();
+             }
+             
+        </script>                                 
+                                  
+                                  <div class="row">
+ 
+        <form id="<%=iteracja+""+currentRow%>" action="more" name="formMore" method="get"><a name="id" onclick="<%out.println("update" + iteracja +""+ currentRow + "()");%>"><div class="col-md-12 " style=" padding-left: 8%;padding-right: 8%;" >
+        <div  class="card card-image" style="background-color:#00685c; min-height: 20%;height: 262px;width:262px;  opacity: 0.9;">
+            <div class="text-white text-center py-12 px-12 my-12">
+                <div>
+                    <%int currentId=res.getInt("id_produktu");%>
+                    <div id="products" class="item  col-xs-12 col-lg-12" >
+                        <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
+                            <%if(res.getString("nazwa").length()>22)
+                            {String shortenedName;
+                            
+                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            out.println(shortenedName); %></h5><% 
+                                
+                            }else{%>
+                            <% out.println(res.getString("nazwa")); %></h6><%}%>
+                    
+                                    <h8 id="mid" name="platforma" class="group inner list-group-item-heading" >
+                                    <% out.println(res.getString("platforma"));%></h8>
+                        <div class="thumbnail" >
+                            <% String obrazek = res.getString("obraz");
+                               StringTokenizer stringTokenizer = new StringTokenizer(obrazek, ", ");
+                               if(stringTokenizer.hasMoreElements())
+                               obrazek=stringTokenizer.nextToken();
+                            %>
+                            <img  src="<%=obrazek%>"/>
+                         <input name="id" type="hidden" value="<%=currentId%>">
+                            <div class="caption">
+                                
+                                
+                                <div class="row" id="mid">
+                                    
+                                    <div class="col-xs-12 col-md-12">
+                                          </a></form>
+                                        <form  action="shoppingcart" name="formBuy" method="post">
+                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                                <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
+                                    </div>                                 
+                                </div>
+                            </div>
+                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                          </div> 
+</div>
+                    
+                    <% }conn.close();%>
+</div> 
+
+            <hr class="featurette-divider">
+            
+            <!-- /END THE FEATURETTES -->
+        </div>
+        
+
+            <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Copyright &copy; 2018 Artemis.</span>
+                <p class="pull-right" style="text-align: center; margin-top: 10px; font-size: 40px;"><a href="#"><span  class="pull-right fa fa-toggle-up text-muted" aria-hidden="true"></span></a></p>
+                
+            </div>
+        </footer>
+
     </body>
 
 </html>
