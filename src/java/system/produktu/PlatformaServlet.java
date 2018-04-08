@@ -7,11 +7,9 @@ package system.produktu;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +21,8 @@ import src.PolaczenieDB;
  *
  * @author Patryk
  */
-@WebServlet(name = "KategoriaServlet", urlPatterns = {"/kategoria"})
-public class KategoriaServlet extends HttpServlet {
+@WebServlet(name = "PlatformaServlet", urlPatterns = {"/platforma"})
+public class PlatformaServlet extends HttpServlet {
 
 //    Connection conn = PolaczenieDB.getConnection();
 //    Statement statement = conn.createStatement();
@@ -33,17 +31,17 @@ public class KategoriaServlet extends HttpServlet {
     
  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            
+        
         try{
         String kat;
         Connection conn = PolaczenieDB.getConnection();
         Statement statement = conn.createStatement();
-        ResultSet resultSet = statement.executeQuery("select distinct kategoria from produkt;");
+        ResultSet resultSet = statement.executeQuery("select distinct platforma from produkt;");
         while(resultSet.next()){
-            if(request.getParameter("id").equals(resultSet.getString("kategoria"))){
+            if(request.getParameter("id").equals(resultSet.getString("platforma"))){
                kat  = request.getParameter("id");
-        request.setAttribute("kategoria", kat);
-        request.getRequestDispatcher("category.jsp").forward(request, response);}
+        request.setAttribute("platform", kat);
+        request.getRequestDispatcher("platform.jsp").forward(request, response);}
         }
         request.getRequestDispatcher("index.jsp").forward(request, response);
         }
@@ -51,5 +49,3 @@ public class KategoriaServlet extends HttpServlet {
         
     }
 }
-
-

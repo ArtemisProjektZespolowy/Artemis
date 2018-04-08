@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Patryk
  */
 @WebServlet(name = "TypServlet", urlPatterns = {"/typ"})
-public class TypServlet extends HttpServlet {
-    private static final String PAGE = "index.jsp";    
+public class TypServlet extends HttpServlet {  
  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         switch(request.getParameter("id")){
@@ -36,7 +35,7 @@ public class TypServlet extends HttpServlet {
                 request.setAttribute("zapytanie","select * from produkt where cena<=40 order by random()");
                 break;
             default:
-                request.getRequestDispatcher(PAGE).forward(request, response);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
         }
         request.setAttribute("name", request.getParameter("id"));

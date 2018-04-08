@@ -60,6 +60,35 @@
                         <%i++;}%>
                         </ul>
                     </li>
+                        <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Platforma</a>
+                        <ul class="dropdown-menu" role="menu">
+ <%                               conn = null;
+                                  ArrayList<String> platformaArray = new ArrayList();
+                                  i=0;
+                                  stat = null;
+                                  res = null;
+                                  conn = PolaczenieDB.getConnection();
+                                  stat = conn.createStatement();
+                                  data = "select distinct platforma, count(*) as wystapienia from produkt group by platforma order by wystapienia desc;";
+                                  res = stat.executeQuery(data);
+                                  while(res.next()){
+                                      platformaArray.add(res.getString("platforma"));
+                                  %>
+        <script>
+               
+
+            <%out.println("function " + "platforma"+ i + "()");%> {
+            document.getElementById("<%=platformaArray.get(i)%>").submit();
+             }
+             
+        </script>
+
+                            <li> <form id="<%=platformaArray.get(i)%>" action="platforma" name="formPlatforma" method="get">
+            <a class="nav-link" name="id" onclick="<%out.println("platforma"+ i + "()");%>"><input name="id" type="hidden" value="<%=platformaArray.get(i)%>"><%=platformaArray.get(i)%></a></form></li>
+                        <%i++;}conn.close();%>
+                        </ul>
+                    </li>
                     <script>
             <%out.println("function " + "nowości" + "()");%>{
             document.getElementById("nowościForm").submit();}

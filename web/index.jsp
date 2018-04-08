@@ -178,8 +178,7 @@
                             out.println(shortenedName); %></h5><% 
                                 
                             }else{%>
-                            <% out.println(res.getString("nazwa")); %></h6><%}%>
-                    
+                            <% out.println(res.getString("nazwa")); %></h6><%}%>                            
                                     <h8 id="mid" name="platforma" class="group inner list-group-item-heading" >
                                     <% out.println(res.getString("platforma"));%></h8>
                         <div class="thumbnail" >
