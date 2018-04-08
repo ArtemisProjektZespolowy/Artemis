@@ -3,6 +3,8 @@
     Created on : 2018-04-04, 14:03:00
     Author     : Patryk
 --%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.StringTokenizer"%>
 <%@page import="src.PolaczenieDB"%>
@@ -110,7 +112,11 @@
             </p>
             <p style="text-align: center;font-weight:bold;font-size:30px; font-family: Trebuchet MS, Helvetica, sans-serif">PLATFORMA<p style="text-align: center;margin-top: -15px;font-size:26px; font-family: Trebuchet MS, Helvetica, sans-serif;"><%out.println(res.getString("platforma"));%></p> 
             </p>
-            <p style="text-align: center;font-weight:bold;font-size:30px; font-family: Trebuchet MS, Helvetica, sans-serif">DATA WYDANIA<p style="text-align: center;margin-top: -15px;font-size:26px; font-family: Trebuchet MS, Helvetica, sans-serif;"><%out.println(res.getString("data_wydania"));%></p> 
+            <%Date td = res.getDate("data_wydania");
+                                                        String b = new String("");
+                                                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+                                                        b = format.format(td);%>
+            <p style="text-align: center;font-weight:bold;font-size:30px; font-family: Trebuchet MS, Helvetica, sans-serif">DATA WYDANIA<p style="text-align: center;margin-top: -15px;font-size:26px; font-family: Trebuchet MS, Helvetica, sans-serif;"><%out.println(b);%></p> 
             </p>
 
         <form  action="shoppingcart" name="formBuy" method="post">
@@ -131,15 +137,15 @@
                                StringTokenizer opisTokenizer = new StringTokenizer(opis, "|");
                                while(opisTokenizer.hasMoreElements()){
                                opisArray.add(opisTokenizer.nextToken());
-                               }%>
+                               }
+        conn.close();%>
                                <%for(int i=0; i<opisArray.size();i++){%>
                                <p style="font-family: Trebuchet MS, Helvetica, sans-serif;"><%out.println(opisArray.get(i));}%></p>
             
             
         </div>    
  
-            <hr class="featurette-divider">
-        
+
 
             <footer class="footer">
             <div class="container">

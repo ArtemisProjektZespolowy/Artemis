@@ -57,13 +57,35 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/7eoCboV.jpg" alt="First slide">
+        <script>
+            <%out.println("function " + "farcry5" + "()");%>{
+            document.getElementById("farcry5Form").submit();}
+            </script>
+            <form id="farcry5Form" action="more" name="formMore" method="get">
+                <a class="text-muted" onclick="farcry5()"><img class="d-block w-100" id="obraz" src="https://i.imgur.com/7eoCboV.jpg" alt="First slide">
+                            <input name="id" type="hidden" value="14"> 
+                            </a></form>
+      
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/GCQtdtD.jpg" alt="Second slide">
+      <script>
+            <%out.println("function " + "warhammer2" + "()");%>{
+            document.getElementById("warhammer2Form").submit();}
+            </script>
+            <form id="warhammer2Form" action="more" name="formMore" method="get">
+                <a class="text-muted" onclick="warhammer2()"><img class="d-block w-100" id="obraz" src="https://i.imgur.com/GCQtdtD.jpg" alt="Second slide">
+                            <input name="id" type="hidden" value="26"> 
+                            </a></form>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" id="obraz" src="https://i.imgur.com/3OHSlyc.jpg" alt="Third slide">
+      <script>
+            <%out.println("function " + "awayout" + "()");%>{
+            document.getElementById("awayoutForm").submit();}
+            </script>
+            <form id="awayoutForm" action="more" name="formMore" method="get">
+                <a class="text-muted" onclick="awayout()"><img class="d-block w-100" id="obraz" src="https://i.imgur.com/3OHSlyc.jpg" alt="Third slide">
+                            <input name="id" type="hidden" value="28"> 
+                            </a></form>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -78,23 +100,44 @@
     </div>
     <div class ="col-sm-5">
         <div class="col">
-       <img src="http://via.placeholder.com/525x200" id="obrazek">
-       <img src="http://via.placeholder.com/525x200" style="margin-top:8%;"  id = "obrazek">
+       <script>
+            <%out.println("function " + "prepforwar" + "()");%>{
+            document.getElementById("prepForWarForm").submit();}
+            </script>
+            <form id="prepForWarForm" action="more" name="formMore" method="get">
+                <a class="text-muted" onclick="prepforwar()"><img src="https://i.imgur.com/SFxBsvc.png" id="obrazek">
+                            <input name="id" type="hidden" value="16"> 
+                            </a></form>
+       <script>
+            <%out.println("function " + "becomeSpelunker" + "()");%>{
+            document.getElementById("becomeSpelunkerForm").submit();}
+            </script>
+            <form id="becomeSpelunkerForm" action="more" name="formMore" method="get">
+                <a class="text-muted" onclick="becomeSpelunker()"><img src="https://i.imgur.com/bR3zm8u.png" style="margin-top:8%;"  id = "obrazek">
+                            <input name="id" type="hidden" value="29"> 
+                            </a></form>
         </div>
     </div>
     </div>
 </div>
 
     
-        
+
 
         <!-- Marketing messaging and featurettes
         ================================================== -->
         <!-- Wrap the rest of the page in another container to center all the content. -->
 
         <div class="container marketing">
-
-            <a class="text-muted" href="#"><h3  style="font-weight: bold">Najpopularniejsze <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+            
+            <script>
+            <%out.println("function " + "najpopularniejsze" + "()");%>{
+            document.getElementById("najpopularniejszeForm").submit();}
+            </script>
+            <form id="najpopularniejszeForm" action="typ" name="formTyp" method="get">
+                <a class="text-muted" onclick="najpopularniejsze()"><h3  style="font-weight: bold">Najpopularniejsze <span  class="fa fa-angle-right" aria-hidden="true"></span></h3>
+                            <input name="id" type="hidden" value="Najpopularniejsze"> 
+                            </a></form>
             <hr class="featurette-divider" style="margin-left: -10px">
             <div class="row">
             <%int iteracja = 0;
@@ -110,7 +153,7 @@
                                       String nazwa = res.getString("nazwa");
                                       iteracja++;
                                   %>
-                                  <script>
+        <script>
                
 
             <%out.println("function " + "update" + iteracja +""+ currentRow + "()");%> {
@@ -128,10 +171,10 @@
                     <%int currentId=res.getInt("id_produktu");%>
                     <div id="products" class="item  col-xs-12 col-lg-12" >
                         <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
-                            <%if(res.getString("nazwa").length()>22)
+                            <%if(res.getString("nazwa").length()>20)
                             {String shortenedName;
                             
-                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            shortenedName=(res.getString("nazwa").substring(0, 20)+"...");
                             out.println(shortenedName); %></h5><% 
                                 
                             }else{%>
@@ -146,7 +189,7 @@
                                obrazek=stringTokenizer.nextToken();
                             %>
                             <img  src="<%=obrazek%>"/>
-                         <input name="id" type="hidden" value="<%=currentId%>">
+                         <input name="id" type="hidden" value="<%=currentId%>"> 
                             <div class="caption">
                                 
                                 
@@ -176,7 +219,14 @@
                                     <hr class="featurette-divider" style="margin-left: -10px">
                
                                     
-        <a class="text-muted" href="#"><h3  style="font-weight: bold">Nowości <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+        <script>
+            <%out.println("function " + "nowości" + "()");%>{
+            document.getElementById("nowościForm").submit();}
+            </script>
+            <form id="nowościForm" action="typ" name="formTyp" method="get">
+                <a class="text-muted" onclick="nowości()"><h3  style="font-weight: bold">Nowości <span  class="fa fa-angle-right" aria-hidden="true"></span></h3>
+                            <input name="id" type="hidden" value="Nowości"> 
+                            </a></form>
             <hr class="featurette-divider" style="margin-left: -10px">
             <div class="row">
             <%                    
@@ -184,7 +234,7 @@
                                   currentRow = 2;
                                   conn = PolaczenieDB.getConnection();
                                   stat = conn.createStatement();
-                                  data = "select * from produkt order by random() limit 4";
+                                  data = "select * from produkt order by data_wydania desc limit 4";
                                   res = stat.executeQuery(data);
                                   while(res.next()){
                                       String nazwa = res.getString("nazwa");
@@ -208,10 +258,10 @@
                     <%int currentId=res.getInt("id_produktu");%>
                     <div id="products" class="item  col-xs-12 col-lg-12" >
                         <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
-                            <%if(res.getString("nazwa").length()>22)
+                            <%if(res.getString("nazwa").length()>20)
                             {String shortenedName;
                             
-                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            shortenedName=(res.getString("nazwa").substring(0, 20)+"...");
                             out.println(shortenedName); %></h5><% 
                                 
                             }else{%>
@@ -255,7 +305,14 @@
                                     <hr class="featurette-divider" style="margin-left: -10px">
                
                                     
-        <a class="text-muted" href="#"><h3  style="font-weight: bold">Gry z platformy Steam <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+        <script>
+            <%out.println("function " + "steam" + "()");%>{
+            document.getElementById("grySteamForm").submit();}
+            </script>
+            <form id="grySteamForm" action="typ" name="formTyp" method="get">
+                <a class="text-muted" onclick="steam()"><h3  style="font-weight: bold">Gry z platformy Steam <span  class="fa fa-angle-right" aria-hidden="true"></span></h3>
+                            <input name="id" type="hidden" value="Gry z platformy Steam"> 
+                            </a></form>
             <hr class="featurette-divider" style="margin-left: -10px">
             <div class="row">
             <%                    
@@ -263,7 +320,7 @@
                                   currentRow = 3;
                                   conn = PolaczenieDB.getConnection();
                                   stat = conn.createStatement();
-                                  data = "select * from produkt order by random() limit 4";
+                                  data = "select * from produkt where platforma='Steam' order by random() limit 4";
                                   res = stat.executeQuery(data);
                                   while(res.next()){
                                       String nazwa = res.getString("nazwa");
@@ -287,10 +344,10 @@
                     <%int currentId=res.getInt("id_produktu");%>
                     <div id="products" class="item  col-xs-12 col-lg-12" >
                         <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
-                            <%if(res.getString("nazwa").length()>22)
+                            <%if(res.getString("nazwa").length()>20)
                             {String shortenedName;
                             
-                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            shortenedName=(res.getString("nazwa").substring(0, 20)+"...");
                             out.println(shortenedName); %></h5><% 
                                 
                             }else{%>
@@ -331,9 +388,16 @@
                     <% }conn.close();%>
 </div> 
 
-            <hr class="featurette-divider">
+            <hr class="featurette-divider" style="margin-left: -10px">
 
-        <a class="text-muted" href="#"><h3  style="font-weight: bold">Gry za mniej niż 20zł <span  class="fa fa-angle-right" aria-hidden="true"></span></h3></a>
+        <script>
+            <%out.println("function " + "gryunder40" + "()");%>{
+            document.getElementById("gry40Form").submit();}
+            </script>
+            <form id="gry40Form" action="typ" name="formTyp" method="get">
+                <a class="text-muted" onclick="gryunder40()"><h3  style="font-weight: bold">Gry poniżej 40zł <span  class="fa fa-angle-right" aria-hidden="true"></span></h3>
+                            <input name="id" type="hidden" value="Gry poniżej 40zł"> 
+                            </a></form>
             <hr class="featurette-divider" style="margin-left: -10px">
             <div class="row">
             <%                    
@@ -341,7 +405,7 @@
                                   currentRow = 4;
                                   conn = PolaczenieDB.getConnection();
                                   stat = conn.createStatement();
-                                  data = "select * from produkt order by random() limit 4";
+                                  data = "select * from produkt where cena<=40 order by random() limit 4";
                                   res = stat.executeQuery(data);
                                   while(res.next()){
                                       String nazwa = res.getString("nazwa");
@@ -365,10 +429,10 @@
                     <%int currentId=res.getInt("id_produktu");%>
                     <div id="products" class="item  col-xs-12 col-lg-12" >
                         <h5 id="mid"  style="max-width: 100%; text-align: center;" name="nazwa" class="card-title  mt-2 font-bold"  style=" font-size: 12px;padding-top: 5%">
-                            <%if(res.getString("nazwa").length()>22)
+                            <%if(res.getString("nazwa").length()>20)
                             {String shortenedName;
                             
-                            shortenedName=(res.getString("nazwa").substring(0, 22)+"...");
+                            shortenedName=(res.getString("nazwa").substring(0, 20)+"...");
                             out.println(shortenedName); %></h5><% 
                                 
                             }else{%>
@@ -408,8 +472,6 @@
                     
                     <% }conn.close();%>
 </div> 
-
-            <hr class="featurette-divider">
             
             <!-- /END THE FEATURETTES -->
         </div>

@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="src.PolaczenieDB"%>
@@ -7,6 +8,7 @@
 <%@page import="shopping.cart.Bean_Ilosc"%>
 <%@page import="shopping.cart.Bean_ID"%>
 <%@page import="java.util.Map"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
@@ -28,17 +30,51 @@
                     aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+
+                            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategoria</a>
+                        <ul class="dropdown-menu" role="menu">
+ <%                   Connection conn = null;
+                                  ArrayList<String> kategoriaArray = new ArrayList();
+                                  int i=0;
+                                  Statement stat = null;
+                                  ResultSet res = null;
+                                  conn = PolaczenieDB.getConnection();
+                                  stat = conn.createStatement();
+                                  String data = "select distinct kategoria from produkt order by kategoria;";
+                                  res = stat.executeQuery(data);
+                                  while(res.next()){
+                                      kategoriaArray.add(res.getString("kategoria"));
+                                  %>
+        <script>
+               
+
+            <%out.println("function " + kategoriaArray.get(i)  + "()");%> {
+            document.getElementById("<%=kategoriaArray.get(i)%>").submit();
+             }
+             
+        </script>
+
+                            <li> <form id="<%=kategoriaArray.get(i)%>" action="kategoria" name="formKategoria" method="get">
+            <a class="nav-link" name="id" onclick="<%out.println(kategoriaArray.get(i)+ "()");%>"><input name="id" type="hidden" value="<%=kategoriaArray.get(i)%>"><%=kategoriaArray.get(i)%></a></form></li>
+                        <%i++;}%>
+                        </ul>
                     </li>
+                    <script>
+            <%out.println("function " + "nowości" + "()");%>{
+            document.getElementById("nowościForm").submit();}
+            </script>
                     <li class="nav-item">
-                        <a class="nav-link" href="games.jsp">Games</a>
+                        
+            <form id="nowościForm" action="typ" name="formTyp" method="get">
+                <a class="nav-link" onclick="nowości()">Nowości<input name="id" type="hidden" value="Nowości"> </a></form>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Art</a>
+                           <li class="nav-item">
+                        <a class="nav-link" href="games.jsp">Gry</a>
                     </li>
+        
                     <li class="nav-item">
-                        <a class="nav-link" href="support.jsp">Contact</a>
+                        <a class="nav-link" href="support.jsp">Kontakt</a>
                     </li>
                 </ul>
 
@@ -72,11 +108,11 @@
                     </li>
                     <%} else {%>
                           <%
-                        Connection conn = PolaczenieDB.getConnection();
-                        Statement stat = conn.createStatement();
+                        conn = PolaczenieDB.getConnection();
+                        stat = conn.createStatement();
           
-                       ResultSet res = null;
-                       String data = "select count(id_wiadomosci) as nowe_wiadomosci from poczta where (email_nadawcy='"+session.getAttribute("User")+"' and (status_nadawcy = false and status_odbiorcy = true))  or (email_odbiorcy='"+session.getAttribute("User")+"' and (status_nadawcy = true and status_odbiorcy = false))";
+                       res = null;
+                       data = "select count(id_wiadomosci) as nowe_wiadomosci from poczta where (email_nadawcy='"+session.getAttribute("User")+"' and (status_nadawcy = false and status_odbiorcy = true))  or (email_odbiorcy='"+session.getAttribute("User")+"' and (status_nadawcy = true and status_odbiorcy = false))";
                        res = stat.executeQuery(data);
                        res.next();
                         %>

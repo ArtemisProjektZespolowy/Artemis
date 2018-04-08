@@ -38,9 +38,8 @@
 
     <body onload="script();">
         <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
-
         <jsp:include page="header.jsp"/>
-
+<div class="container" id="xd">
         <%
             Connection conn = PolaczenieDB.getConnection();
             Statement stat = conn.createStatement();
@@ -72,7 +71,7 @@
 
 
 
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
 
@@ -194,7 +193,7 @@
                     </div>
                     <div class="row-fluid" style="margin-bottom: 15%; ">
 
-                        <a href="games.jsp" type="button" class="btn btn-warning">Kontynuuj zakupy</a>
+                        <a href="index.jsp" type="button" class="btn btn-warning">Kontynuuj zakupy</a>
 
                         <div class="pull-right ">
                             <form  action="platnosci" method="post">
@@ -210,6 +209,6 @@
                 </div>
             </div>
         </div>
-
+</div>
     </body>
 </html>
