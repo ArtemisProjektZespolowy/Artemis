@@ -1,4 +1,8 @@
-
+<%-- 
+    Document   : pageDoesNotExist
+    Created on : 2018-04-08, 15:53:17
+    Author     : Patryk
+--%>
 
 <%@page import="src.PolaczenieDB"%>
 <%@page import="java.sql.ResultSet"%>
@@ -36,9 +40,9 @@
                 <div class="container_1">
 
 
-                    <span class="fa fa-server" style="font-size: 250px; align-content: center; color: white; text-align:center; "></span>
+                    <span class="fa fa-times-circle-o" style="font-size: 250px; color:white; align-content: center; text-align:center; "></span>
                     <br>
-                    <p style="font-size: 28px; color: white; ">Serwer jest chwilowo niedostępny, spróbuj ponownie później :( </p>
+                    <p style="font-size: 50px; color: white; ">Taka strona nie istnieje </p>
                     <form name="" method="post" action="index.jsp" id="contactForm" novalidate>
                         <br>
                         <button type="submit" value="" class="text-muted">Strona główna</button>

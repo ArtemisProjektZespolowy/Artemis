@@ -6,7 +6,10 @@
 package system.produktu;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -14,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import src.PolaczenieDB;
 
 /**
  *
@@ -32,19 +36,14 @@ public class ProduktServlet extends HttpServlet {
  @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        List<Produkt> produkty = produktService.getProdukty();
-        Produkt produkt = produktService.find(request.getParameter("id"));
-        request.setAttribute("produkt.id", produkt.getId()); // Store products in request scope.
-//        request.setAttribute("produkt.nazwa", produkt.getNazwa()); // Store products in request scope
-//        request.setAttribute("produkt.data_wydania", produkt.getData_wydania());
-//        request.setAttribute("produkt.kategoria", produkt.getKategoria());
-//        request.setAttribute("produkt.platforma", produkt.getPlatforma());
-//        request.setAttribute("produkt.cena", produkt.getCena());
-//        request.setAttribute("produkt.wydawca", produkt.getWydawca());
-//        request.setAttribute("produkt.opis", produkt.getOpis());
-//        request.setAttribute("produkt.obraz", produkt.getObraz());
-        
-        request.getRequestDispatcher("product.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
-        
+        boolean isProductinDatabase = produktService.find(request.getParameter("id"));
+        if(isProductinDatabase){
+        request.setAttribute("produkt.id", request.getParameter("id")); // Store products in request scope.
+        request.getRequestDispatcher("product.jsp").forward(request, response);
+        }
+        else{
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
     

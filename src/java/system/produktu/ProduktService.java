@@ -18,17 +18,17 @@ public class ProduktService {
 		return produktDao.getProdukty();
 	}
     
-        public Produkt find(String id){
+        public boolean find(String id){
             int in = Integer.parseInt(id);
             List<Produkt> produkty = getProdukty();
             
             for(int i = 0; i<produkty.size();i++){
                 
                 if(produkty.get(i).getId()==in)
-                    return produkty.get(i);
+                    return true;
             }
             
-            return produkty.get(0);
+            return false;
         }
     
 }
