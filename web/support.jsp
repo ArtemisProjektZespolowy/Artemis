@@ -32,36 +32,35 @@
     <body>
 
         <jsp:include page="header.jsp"/>
-        <script>
 
-// Material Select Initialization
-            $(document).ready(function () {
-                $('.mdb-select').material_select();
-            });
-
-        </script>
-        <div class="body_1">
-            <div class="wrapper">
-             
-                   
-
-                        <div class="container" style="background-color: rgba(255,255,255, 0.9); color: white; ">
-                             <form action="support" method="post">
-                                <select name="rodzaj_problemu"  class="mdb-select">
-                                <option value="" disabled selected >Wybierz rodzaj problemu</option>
-                                <option value="Problemy z kontem" ddata-icon="" >Problemy z kontem</option>
-                                <option value="Płatnosci" data-fa-icon="" class="rounded-circle">Płatnosci</option>
-                                <option value="Problemy z kodem" data-icon="" class="rounded-circle">Problemy z kodem</option>
-                                <option value="Inne" data-icon="" class="rounded-circle">Inne</option>
-                            </select>
-                           
+        
+ 
+                        <div class="container" style="background-color: rgba(255,255,255, 0.2); width: 45%; ">
+                            
+                            
+                            <h4>Formularz kontaktowy</h4>
+                            
+                            <form action="wysWiadDoSupp" method="post">
+                                  <div class="md-form">
+                                      
+                               <select id="myText" name="rodzaj_problemu"  class="browser-default md-textarea form-control"required>
+                                     
+                                <option value="" disabled hidden selected class="md-form">Wybierz rodzaj problemu</option>
+                                <option value="Problemy z kontem"  class="browser-default" >Problemy z kontem</option>
+                                <option value="Płatnosci"  class="">Płatnosci</option>
+                                <option value="Nie działa klucz gr"  class="">Nie działa klucz gry</option>
+                                <option value="Inne"  class="">Inne</option>
+                                
+                                </select>
+                                       
+                           </div>
                                <div class="md-form form-lg">
-                                   <input name="tytul" type="text" id="inputLGEx" class="form-control form-control-lg">
-                                    <label for="inputLGEx">Podaj tytuł wiadomości</label>
+                                   <input name="tytul" type="text" id="inputLGEx" class="form-control form-control-lg "  required   >
+                                    <label for="inputLGEx">Tytuł wiadomości</label>
                                 </div>
                                 <p></p>
-                           <div class="md-form">
-                               <textarea name="trescWiadomosci" type="text" id="form7" class="md-textarea form-control" rows="3"></textarea>
+                           <div class="md-form" >
+                               <textarea class="form-control" id="exampleFormControlTextarea4" rows="4"></textarea>
                             <label for="form7">Treść wiadomości</label>
                         </div>
               
@@ -73,8 +72,7 @@
                 
                     </form>
                 </div>
-            </div>
-        </div>
+         
     </body>
 
 </html>

@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import src.PolaczenieDB;
+import static system.poczty.obslugaWiadPracownik.conn;
 import system.rejestracji.RegisterBean;
 import system.rejestracji.RegisterDao;
 
@@ -103,17 +104,7 @@ if(req.getParameter("widok2") == null){}else{
           
             
             NowaBean nowa = new NowaBean();
-           
-            
-//            out.println(req.getParameter("tytul"));
-//            out.println(data_zgloszenia);
-//            out.println(typ_wiadomosci.glowna.toString());
-//            out.println(String.valueOf(session.getAttribute("User")));
-//            out.println(req.getParameter("email_odbiorcy"));
-//            out.println((Integer)session.getAttribute("id_konta"));
-//            out.println();
-//            out.println();
-            
+         
             nowa.setTytul(req.getParameter("tytul"));
             nowa.setStatus_nadawcy(true);
             nowa.setStatus_odbiorcy(false);
@@ -174,7 +165,7 @@ if(req.getParameter("widok2") == null){}else{
      
         req.setAttribute("id_wiadomosci", req.getParameter("id_wiadomosci")); // przypisanie id każdej wiadomosci
       
-        int id_wiadomosci = Integer.parseInt( req.getParameter("id_wiadomosci"));
+        int id_wiadomosci = Integer.parseInt(req.getParameter("id_wiadomosci"));
         String data_wyslania = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
         String email_nadawcy = String.valueOf(session.getAttribute("User"));
         
@@ -381,22 +372,72 @@ if(req.getParameter("widok2") == null){}else{
                     
               }
               
-              
+             case "otwozZgloszenie":
+            
+              try {
+                
+                conn = PolaczenieDB.getConnection(); 
+                ps = conn.prepareCall("UPDATE poczta SET status_wiadomosci=? where id_wiadomosci="+id_wiadomosci+"");
+                ps.setBoolean(1, false);
+                int wynik = ps.executeUpdate();
+                ps.close();
+                conn.close();
+                if(wynik > 0){
+                  req.setAttribute("KontrolerWiodku", null);
+                  req.getRequestDispatcher(PAGE).include(req, resp);
+                  return; 
+                }else{
+                    req.setAttribute("KontrolerWiodku", "otwarcie_wiadomosci");
+                    req.getRequestDispatcher(PAGE3).include(req, resp);
+                    return;
+                }
+                 } catch (Exception e) {
+                      req.setAttribute("KontrolerWiodku", "otwarcie_wiadomosci");
+                    req.getRequestDispatcher(PAGE3).include(req, resp);
+                    return;
+                 }
+            
         
+         case "zamknijZgloszenie":
+            
+             String data_zamkniecia = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+                try {
+                
+                conn = PolaczenieDB.getConnection(); 
+                ps = conn.prepareCall("UPDATE poczta SET status_wiadomosci=?, data_zamkniecia=? where id_wiadomosci="+id_wiadomosci+"");
+                ps.setBoolean(1, true);
+                ps.setTimestamp(2, Timestamp.valueOf(data_zamkniecia));
+                int wynik = ps.executeUpdate();
+                ps.close();
+                conn.close();
+                if(wynik > 0){
+                  req.setAttribute("KontrolerWiodku", null);
+                  req.getRequestDispatcher(PAGE).include(req, resp);
+                  return; 
+                }else{
+                    req.setAttribute("KontrolerWiodku", "otwarcie_wiadomosci");
+                    req.getRequestDispatcher(PAGE3).include(req, resp);
+                    return;
+                }
+                 } catch (Exception e) {
+                      req.setAttribute("KontrolerWiodku", "otwarcie_wiadomosci");
+                    req.getRequestDispatcher(PAGE3).include(req, resp);
+                    return;
+                 }
+            
+        
+         
               
               
-             
+              
+              
+              
+              
+   
           default:
               break;
       }
-      
-        
-//        out.println(req.getParameter("id_wiadomosci"));
-         
-        
-   
-  
-       
+
     }
 
 }
