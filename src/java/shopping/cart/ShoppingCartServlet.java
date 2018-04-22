@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,24 +48,43 @@ public class ShoppingCartServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
+         Connection conn = PolaczenieDB.getConnection();
 
         List<Integer> list = (List<Integer>) session.getAttribute("list");
 
         Map<Integer, Integer> koszyk = (Map<Integer, Integer>) session.getAttribute("koszyk"); // towrzymy mapę dla id_produktu i ilosci
 
-        int id_product1 = Integer.parseInt(req.getParameter("btnBuy"));
+         int dostepna_ilosc = 0;
+
+        try {
+             int id_product1 = Integer.parseInt(req.getParameter("btnBuy"));
+      String data2 = "select count(k.id_produktu) as dostepnosc  from klucze k join produkt p on k.id_produktu=p.id_produktu where  (p.id_produktu = " + id_product1 + " and czy_zuzyty = false)";
+            Statement stat2 = conn.createStatement();
+            ResultSet res2 = null;
+                    res2 = stat2.executeQuery(data2);
+                    res2.next();
+      
+        dostepna_ilosc = res2.getInt("dostepnosc");
+       
         if (koszyk == null) {
             koszyk = new TreeMap<>();
         }
         if(koszyk.containsKey(id_product1)){
             req.getRequestDispatcher(PAGE).forward(req, resp);
         }else{
-            koszyk.put(id_product1, 1);
+            if(dostepna_ilosc > 0){
+                koszyk.put(id_product1, 1);
+             session.setAttribute("koszyk", koszyk);
+        req.getRequestDispatcher(PAGE).forward(req, resp);
+            }else{
+              koszyk.put(id_product1, 0);
              session.setAttribute("koszyk", koszyk);
         req.getRequestDispatcher(PAGE).forward(req, resp);
         }
+        }
         
-
+                } catch (Exception e) {
+        }
        
 
 //        if (true) {  // kiedy dodajemy gry do koszyka

@@ -15,39 +15,46 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>EmptyCard</title>
+        <title>Wsparcie</title>
+
+        <!-- Bootstrap core CSS -->
+
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+
+
+
         <!-- Custom styles for this template -->
-        <link href="./css/register_sing_in.css" rel="stylesheet">
+        <link href="./css/support.css" rel="stylesheet">
     </head>
-    <!-- NAVBAR
-    ================================================== -->
 
     <body>
-
 
         <jsp:include page="header.jsp"/>
 
 
-    <div class="body_1">
+
+        <div class="body_1">
             <div class="wrapper">
                 <div class="container_1">
 
 
-                    <span class="fa fa-server" style="font-size: 250px; align-content: center; color: white; text-align:center; "></span>
+                    <span class="fa fa-check-circle" style="font-size: 250px; align-content: center; color: white; text-align:center; "></span>
                     <br>
-                    <p style="font-size: 28px; color: white; ">Serwer jest chwilowo niedostępny, spróbuj ponownie później :( </p>
+                    <p style="font-size: 28px; color: white; ">Dziękujemy za złożenie zamówienia :) </p>
+                    <form name="" method="post" action="#" id="contactForm" novalidate>
+                        <br>
+                        <button  class="btn btn-deep-orange">Moje zamówienia</button>
+                    </form>
                     <form name="" method="post" action="index.jsp" id="contactForm" novalidate>
                         <br>
-                        <button  class="btn btn-deep-orange"  >Strona Główna</button>
+                        <button  class="btn btn-primary">Strona Główna</button>
                     </form>
                 </div>
             </div>
         </div>
 
-
-    </body>
+</body>
 
 </html>

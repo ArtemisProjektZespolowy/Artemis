@@ -47,7 +47,7 @@
 <div class="demo">
         <jsp:include page="header.jsp"/>
 
-        <div class="container"id="xd">
+        <div class="container"id="xd" style="text-align: center;">
             <h1 style="text-align: center;font-size:50px; font-family: Trebuchet MS, Helvetica, sans-serif"><%out.println(request.getAttribute("kategoria"));%></h1>
             <hr class="featurette-divider" style="margin-left: -10px">
             <div class="container marketing">

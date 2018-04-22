@@ -98,13 +98,13 @@
             <form id="nowościForm" action="typ" name="formTyp" method="get">
                 <a class="nav-link" onclick="nowości()">Nowości<input name="id" type="hidden" value="Nowości"> </a></form>
                     </li>
-                           <li class="nav-item">
-                        <a class="nav-link" href="games.jsp">Gry</a>
-                    </li>
-        
+                    
+                     <% if (session.getAttribute("permissions") != null) {%>
+                    <li class="nav-item">
                     <li class="nav-item">
                         <a class="nav-link" href="support.jsp">Kontakt</a>
                     </li>
+                    <%}%>
                 </ul>
 
                

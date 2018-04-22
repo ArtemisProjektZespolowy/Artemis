@@ -31,6 +31,10 @@
         <meta name="author" content="">
         <title>Koszyk</title>
         <link href="./css/koszyk.css" rel="stylesheet">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+        <!-- Custom styles for this template -->
+        <link href="./css/register_sing_in.css" rel="stylesheet">
 
     </head>
     <!-- NAVBAR
@@ -39,7 +43,7 @@
     <body onload="script();">
         <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
         <jsp:include page="header.jsp"/>
-<div class="container" id="xd">
+
         <%
             Connection conn = PolaczenieDB.getConnection();
             Statement stat = conn.createStatement();
@@ -70,12 +74,7 @@
 
 
 
-
-        <div class="container" >
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-
-                    <% if (true) {
+                    <% 
                         
                         
                             Map<Bean_ID, Bean_Ilosc> koszyk = (Map<Bean_ID, Bean_Ilosc>) session.getAttribute("koszyk");
@@ -83,8 +82,13 @@
                                  koszyk = new TreeMap<>();
                             }
                             if (koszyk.size() != 0) {%>
+                            <div class="container" id="xd">
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
 
-                    <%   int iteracja = 0;
+                    <%   
+                        int iteracja = 0;
                         for (Object q : koszyk.keySet()) {
                             int id_productMap = (Integer) q;
 //                            out.println(q);
@@ -137,7 +141,7 @@
                                         <div class="media-body">
                                             <h4 class="media-heading "><a href="#"><%=res.getString("nazwa")%></a></h4>
                                             <h5 class="media-heading"> by <a href="#"><%=res.getString("wydawca")%></a></h5>
-                                            <span>Status: </span><%if (res2.getInt("dostepnosc") != 0) {%><span class="text-success"><strong>Dostępny</strong></span><%} else {%><span class="text-danger"><strong>Niedostepny</strong></span><%}%>
+                                            <span>Status: </span><%if (res2.getInt("dostepnosc") != 0) {%><span class="text-success"><strong>Dostępny - szt. <% out.println(res2.getInt("dostepnosc")); %> </strong></span><%} else {%><span class="text-danger"><strong>Niedostepny</strong></span><%}%>
                                         </div>
                                     </div></td>
                                     
@@ -197,18 +201,35 @@
 
                         <div class="pull-right ">
                             <form  action="platnosci" method="post">
-                                <button  class="btn btn-default" name="order" value="1" onclick="order">Przejdz do płatności</button>
+                                <button  class="btn btn-default" name="platnosci" onclick="platnosci">Przejdz do płatności</button>
                             </form> 
                         </div>
                     </div>
 
-                    <% } else {
-                            request.getRequestDispatcher("emptyCard.jsp").forward(request, response);
-                        }%>
-                    <% }%>
+                  
                 </div>
             </div>
         </div>
 </div>
+                    
+                    <% } else {
+                            %>
+                   <div class="body_1">
+            <div class="wrapper">
+                <div class="container_1">
+
+
+                    <span class="fa fa-shopping-cart" style="font-size: 250px; align-content: center; color: white; text-align:center; "></span>
+                    <br>
+                    <p style="font-size: 28px; color: white; ">Twoj koszyk jest pusty :( </p>
+                    <form name="" method="post" action="index.jsp" id="contactForm" novalidate>
+                        <br>
+                        <button type="submit" value="" class="btn btn-warning waves-effect" style="font-size: 16px; font-weight: 300;">Strona główna</button>
+                    </form>
+                </div>
+            </div>
+        </div>        
+            <%
+            }%>
     </body>
 </html>

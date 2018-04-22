@@ -60,7 +60,7 @@
                                 </div>
                                 <p></p>
                            <div class="md-form" >
-                               <textarea class="form-control" id="exampleFormControlTextarea4" rows="4"></textarea>
+                               <textarea class="form-control" id="exampleFormControlTextarea4" rows="4" required></textarea>
                             <label for="form7">Treść wiadomości</label>
                         </div>
               
