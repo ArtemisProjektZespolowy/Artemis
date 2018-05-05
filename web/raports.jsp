@@ -312,7 +312,7 @@ $(document).ready(function(){
                     
                     
                     <form method="post" action="raports.jsp">
-                   <input id="cxz" name="raport1" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" required>
+                        <input id="cxz" name="raport1" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                    <input hidden="true" id="cxz" name="control" value="true" >
                    <button name="bpRaport1" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
                 </form>
@@ -324,7 +324,7 @@ $(document).ready(function(){
                    
                     <h6 style="" class="card-title">Data wydania > wartość</h6>
                        <form method="post" action="raports.jsp">
-                   <input id="cxz" name="raport2" style="text-align: center;" class="form-control" type="date" placeholder="Podaj datę" required>
+                   <input id="cxz" name="raport2" style="text-align: center;" class="form-control" type="date" placeholder="Podaj datę"  required>
                    <input hidden="true" id="cxz" name="control" value="true" >
                    <button name="bpRaport2" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
                 </form>
@@ -336,7 +336,7 @@ $(document).ready(function(){
                 <div class="card mb-3">
                     <h6 class="card-title">Liczba kluczy > wartość</h6>
                      <form method="post" action="raports.jsp">
-                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj datę" required>
+                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                    <input hidden="true" id="cxz" name="control" value="true" >
                    <button name="bpRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
                 </form>
@@ -353,7 +353,7 @@ $(document).ready(function(){
            <div class="col-md-4">
                 <div class="card mb-3">
                     <h6 class="card-title">In future</h6>
-                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj datę" required>
+                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartoś" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                    <input hidden="true" id="cxz" name="control" value="true" >
                    <button name="bpRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
             
@@ -364,7 +364,7 @@ $(document).ready(function(){
          <div class="col-md-4">
                 <div class="card mb-3">
                     <h6 class="card-title">In future</h6>
-                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj datę" required>
+                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość"  pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                    <input hidden="true" id="cxz" name="control" value="true" >
                    <button name="bpRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
              
@@ -374,7 +374,7 @@ $(document).ready(function(){
           <div class="col-md-4">
                 <div class="card mb-3">
                     <h6 class="card-title">In future</h6>
-                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj datę" required>
+                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość"  pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                    <input hidden="true" id="cxz" name="control" value="true" >
                    <button name="bpRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
              
@@ -421,7 +421,7 @@ $(document).ready(function(){
                 <div class="card mb-3">
                     <h6 class="card-title">Suma > wartość</h6>
                     <form method="post" action="raports.jsp">
-                    <input id="cxz" name="raport1" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" required>
+                    <input id="cxz" name="raport1" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                     <input hidden="true" id="cxz" name="control2" value="true" >
                     <button name="bkRaport1" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
                     </form>
@@ -454,9 +454,9 @@ $(document).ready(function(){
                 <div class="card mb-3">
                     <h6 class="card-title">Długość hasła < wartość</h6>
                    <form method="post" action="raports.jsp">
-                    <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" required>
+                    <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                     <input hidden="true" id="cxz" name="control2" value="true" >
-                    <button name="bkRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
+                    <button name="bkRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "   class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
                   
                    </form>
                 </div>
@@ -472,7 +472,7 @@ $(document).ready(function(){
            <div class="col-md-4">
                 <div class="card mb-3">
                     <h6 class="card-title">In future</h6>
-                    <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" required>
+                    <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                     <input hidden="true" id="cxz" name="control2" value="true" >
                     <button name="bkRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
                   
@@ -483,7 +483,7 @@ $(document).ready(function(){
          <div class="col-md-4">
                 <div class="card mb-3">
                     <h6 class="card-title">In future</h6>
-                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" required>
+                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                     <input hidden="true" id="cxz" name="control2" value="true" >
                     <button name="bkRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
              
@@ -493,7 +493,7 @@ $(document).ready(function(){
           <div class="col-md-4">
                 <div class="card mb-3">
                     <h6 class="card-title">In future</h6>
-                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" required>
+                   <input id="cxz" name="raport3" style="text-align: center;" class="form-control" type="text" placeholder="Podaj wartość" pattern="[0-9]" title="Prosze podaj wartości liczbowe" required>
                     <input hidden="true" id="cxz" name="control2" value="true" >
                     <button name="bkRaport3" value="true"  type="submit" style="width: 95%; font-size: 13px; font-weight: 900; letter-spacing: 3px; "  class="btn btn-outline-primary waves-effect btn-sm">Wykonaj</button>
              
