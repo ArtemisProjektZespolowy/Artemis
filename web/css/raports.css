@@ -1,0 +1,368 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+::placeholder{
+    color: white; 
+}
+
+.body_1{
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+  font-weight: 300;
+}
+
+.text-muted {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  
+  background-color: #eaeaea;
+  border: 0;
+  padding: 10px 15px;
+  color: #017dc1;
+  border-radius: 3px;
+  width: 250px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+
+.wrapper {
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #125696 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #125696 0%, #53e3a6 100%);
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  
+}
+
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+#myTable2 {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable2 th, #myTable2 td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable2 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable2 tr.header, #myTable2 tr:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+
+.scrollpane{
+    
+    overflow-y: scroll;
+    height:50%;
+    max-height:300px; 
+    
+}
+
+
+
+
+/* Let's get this party started */
+.scrollpane::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+.scrollpane::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+ 
+/* Handle */
+.scrollpane::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: rgba(255,255,255,0.7); 
+    -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.5); 
+}
+
+.scrollpane2{
+    overflow-y: scroll;
+    
+  
+    height:100%;
+    max-height:35vh;
+}
+
+/* Let's get this party started */
+.scrollpane2::-webkit-scrollbar {
+    width: 12px;
+    
+}
+ 
+/* Track */
+.scrollpane2::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+ 
+/* Handle */
+.scrollpane2::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background: rgba(255,255,255,0.7); 
+    -webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.5); 
+}
+
+
+
+.container_1 {
+    
+  margin-top: 2%;
+ 
+  text-align: left;
+}
+
+
+
+.chart_block{
+   
+   max-height: 100%;
+   max-width: 100%;
+   margin: auto;
+   background-color: rgba(255,255,255,0.9);
+  
+}
+
+
+.list-group{
+    max-width: 100%;
+   
+}
+
+.list-group-item:hover{
+
+}
+
+.wykresy_txt{
+        text-align: center;
+    
+}
+
+.test{
+    color: black;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    margin: auto;
+    left: 0;
+    top: 0;
+    width: 80%; /* Full width */
+    height: 80%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(255,255,255,0.9); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 50%;
+    height: 50%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s;
+    
+    
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+   
+}
+
+.modal-body {
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+.list-group-mine2 .list-group-item2{
+  background-color: rgba(0, 0, 0,0.0);
+  border-top: 1px solid white;
+  border-left-color: orange;
+  border-right-color: orange;
+  color: white;
+  margin-right: 1%;
+  
+
+}
+
+.list-group-mine2 .list-group-item2:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.list-group-mine2 .list-group-item2:collapsed{
+    background-color: rgba(0, 0, 200,0.55);
+    
+}
+
+
+
+.list-group-item2{
+    
+  background-color: rgba(200,0,0,0.2);
+  border-top: 1px solid white;
+  border-left-color: orange;
+  border-right-color: orange;
+  color: white;
+}
+
+
+.list-group-item3{
+  background-color: rgba(255,255,255,.9);
+  border-top: 1px solid white;
+  border-left-color: white;
+  border-right-color: white;
+  color: black;
+  text-align: center;
+  text-align: justify;
+   width: 99%;
+   padding: 1.5%;
+   word-wrap:break-word;
+   max-width:100%;
+}
+
+
+#tags{
+font-size: 17px;
+margin-top: 1vh;
+width: 100%;
+
+}
+#tags2{
+
+margin-top: 1vh;
+
+
+
+}
+
+.right_arrow {
+
+  height:  100%;
+  width: 7%;
+  margin-left: -7%;
+   margin-top: 1vh;
+  background-color: rgba(255, 158, 76, 0.8); 
+  position: absolute;
+  text-align: center;
+  font-size: 45px;
+}
+.right_arrow:hover{
+   background-color: rgba(230, 145, 70, 0.9); 
+}
+
+.card-title{
+     color:black;
+     text-align: center;
+     margin: 3%;
+    
+}
+
+
+
+
+

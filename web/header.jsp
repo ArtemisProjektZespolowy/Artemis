@@ -97,12 +97,18 @@
                         
             <form id="nowościForm" action="typ" name="formTyp" method="get">
                 <a class="nav-link" onclick="nowości()">Nowości<input name="id" type="hidden" value="Nowości"> </a></form>
-                    </li>
-                    
+                  
                      <% if (session.getAttribute("permissions") != null) {%>
-                    <li class="nav-item">
+                  
                     <li class="nav-item">
                         <a class="nav-link" href="support.jsp">Kontakt</a>
+                    </li>
+                    <%}%>
+                    
+                    <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin") || session.getAttribute("permissions").equals("Pracownik")) ) {%>
+                      </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="raports.jsp">Raporty</a>
                     </li>
                     <%}%>
                 </ul>
@@ -156,7 +162,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"><%="Welcome " + session.getAttribute("User")%></a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li idclass="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My account</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Images</a></li>
