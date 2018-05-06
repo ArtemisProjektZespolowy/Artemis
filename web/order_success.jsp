@@ -43,7 +43,7 @@
                     <span class="fa fa-check-circle" style="font-size: 250px; align-content: center; color: white; text-align:center; "></span>
                     <br>
                     <p style="font-size: 28px; color: white; ">Dziękujemy za złożenie zamówienia :) </p>
-                    <form name="" method="post" action="#" id="contactForm" novalidate>
+                    <form name="" method="post" action="myorders.jsp" id="contactForm" novalidate>
                         <br>
                         <button  class="btn btn-deep-orange">Moje zamówienia</button>
                     </form>

@@ -113,7 +113,7 @@
             document.getElementById("becomeSpelunkerForm").submit();}
             </script>
             <form id="becomeSpelunkerForm" action="more" name="formMore" method="get">
-                <a class="text-muted" onclick="becomeSpelunker()"><img src="https://i.imgur.com/bR3zm8u.png" style="margin-top:8%;"  id = "obrazek">
+                <a class="text-muted" onclick="becomeSpelunker()"><img src="https://i.imgur.com/jHjC4XY.png" style="margin-top:8%;"  id = "obrazek">
                             <input name="id" type="hidden" value="29"> 
                             </a></form>
         </div>
@@ -135,7 +135,7 @@
             document.getElementById("najpopularniejszeForm").submit();}
             </script>
             <form id="najpopularniejszeForm" action="typ" name="formTyp" method="get">
-                <a class="text-muted" onclick="najpopularniejsze()"><h3  style="font-weight: bold">Najpopularniejsze <span  class="fa fa-angle-right" aria-hidden="true"></span></h3>
+                <a class="text-muted" onclick="najpopularniejsze()"><h3  style="font-weight: bold">Najpopularniejsze  <span  class="fa fa-angle-right" aria-hidden="true"></span></h3>
                             <input name="id" type="hidden" value="Najpopularniejsze"> 
                             </a></form>
             <hr class="featurette-divider" style="margin-left: -10px">
@@ -145,13 +145,26 @@
                                   Connection conn = null;
                                   Statement stat = null;
                                   ResultSet res = null;
+                                  boolean res2next;
+                                  ResultSet res2 = null;
+                                  Statement stat2 = null;
                                   conn = PolaczenieDB.getConnection();
+                                  stat2 = conn.createStatement();
+                                  
                                   stat = conn.createStatement();
                                   String data = "select * from produkt order by random() limit 4";
+                                  String data2;
                                   res = stat.executeQuery(data);
                                   while(res.next()){
-                                      String nazwa = res.getString("nazwa");
+                                      data2 = "select p.id_produktu, count(k.id_produktu) as dostepnosc  from klucze k join produkt p on k.id_produktu=p.id_produktu where p.id_produktu = " + res.getInt("id_produktu") + " and k.czy_zuzyty = 'false' group by p.id_produktu;";                                  
+                                      res2= stat2.executeQuery(data2);
+                                      if(res2.next())
+                                          res2next=true;
+                                      else
+                                          res2next=false;
+                                      
                                       iteracja++;
+                                      
                                   %>
         <script>
                
@@ -193,11 +206,11 @@
                                 
                                 
                                 <div class="row" id="mid">
-                                    
+
                                     <div class="col-xs-12 col-md-12">
                                           </a></form>
                                         <form  action="shoppingcart" name="formBuy" method="post">
-                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                            <button   name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;" tabindex="4" <%if(res2next == true){%>>Dodaj do koszyka<%}else{%>disabled>Klucz niedostępny<%}%><br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
                                                 <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
                                     </div>                                 
                                 </div>
@@ -235,8 +248,14 @@
                                   stat = conn.createStatement();
                                   data = "select * from produkt order by data_wydania desc limit 4";
                                   res = stat.executeQuery(data);
+                                  stat2 = conn.createStatement();
                                   while(res.next()){
-                                      String nazwa = res.getString("nazwa");
+                                      data2 = "select p.id_produktu, count(k.id_produktu) as dostepnosc  from klucze k join produkt p on k.id_produktu=p.id_produktu where p.id_produktu = " + res.getInt("id_produktu") + " and k.czy_zuzyty = 'false' group by p.id_produktu;";                                  
+                                      res2= stat2.executeQuery(data2);
+                                      if(res2.next())
+                                          res2next=true;
+                                      else
+                                          res2next=false;;
                                       iteracja++;
                                   %>
                                    <script>
@@ -284,7 +303,7 @@
                                     <div class="col-xs-12 col-md-12">
                                           </a></form>
                                         <form  action="shoppingcart" name="formBuy" method="post">
-                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                            <button   name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;" tabindex="4" <%if(res2next == true){%>>Dodaj do koszyka<%}else{%>disabled>Klucz niedostępny<%}%><br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
                                                 <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
                                     </div>                                 
                                 </div>
@@ -321,8 +340,14 @@
                                   stat = conn.createStatement();
                                   data = "select * from produkt where platforma='Steam' order by random() limit 4";
                                   res = stat.executeQuery(data);
+                                  stat2 = conn.createStatement();
                                   while(res.next()){
-                                      String nazwa = res.getString("nazwa");
+                                      data2 = "select p.id_produktu, count(k.id_produktu) as dostepnosc  from klucze k join produkt p on k.id_produktu=p.id_produktu where p.id_produktu = " + res.getInt("id_produktu") + " and k.czy_zuzyty = 'false' group by p.id_produktu;";                                  
+                                      res2= stat2.executeQuery(data2);
+                                      if(res2.next())
+                                          res2next=true;
+                                      else
+                                          res2next=false;
                                       iteracja++;
                                   %>
                                    <script>
@@ -370,7 +395,7 @@
                                     <div class="col-xs-12 col-md-12">
                                           </a></form>
                                         <form  action="shoppingcart" name="formBuy" method="post">
-                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                            <button   name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;" tabindex="4" <%if(res2next == true){%>>Dodaj do koszyka<%}else{%>disabled>Klucz niedostępny<%}%><br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
                                                 <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
                                     </div>                                 
                                 </div>
@@ -406,8 +431,14 @@
                                   stat = conn.createStatement();
                                   data = "select * from produkt where cena<=40 order by random() limit 4";
                                   res = stat.executeQuery(data);
+                                  stat2 = conn.createStatement();
                                   while(res.next()){
-                                      String nazwa = res.getString("nazwa");
+                                      data2 = "select p.id_produktu, count(k.id_produktu) as dostepnosc  from klucze k join produkt p on k.id_produktu=p.id_produktu where p.id_produktu = " + res.getInt("id_produktu") + " and k.czy_zuzyty = 'false' group by p.id_produktu;";                                  
+                                      res2= stat2.executeQuery(data2);
+                                      if(res2.next())
+                                          res2next=true;
+                                      else
+                                          res2next=false;
                                       iteracja++;
                                   %>
                                    <script>
@@ -455,7 +486,7 @@
                                     <div class="col-xs-12 col-md-12">
                                           </a></form>
                                         <form  action="shoppingcart" name="formBuy" method="post">
-                                            <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;">Dodaj do koszyka<br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
+                                            <button   name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="margin-left: 20px; margin-top:12px; text-align: center; font-size: 12px;" tabindex="4" <%if(res2next == true){%>>Dodaj do koszyka<%}else{%>disabled>Klucz niedostępny<%}%><br><p class="lead" style="font-size: 12px;margin-bottom: -4px">
                                                 <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
                                     </div>                                 
                                 </div>

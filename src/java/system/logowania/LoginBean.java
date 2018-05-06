@@ -29,5 +29,5 @@ public class LoginBean {
     public void setHaslo(String haslo) {
         this.haslo = haslo;
     }
-  
+
 }

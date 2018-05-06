@@ -22,8 +22,6 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Artemis</title>
-
         <!-- Bootstrap core CSS -->
         <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet">
@@ -50,17 +48,28 @@
     
     <div class="container" id="xd">
        <%                         ResultSet res = null;                                 
-        if(request.getAttribute("produkt.id")!= null){
+                                    if(request.getAttribute("produkt.id")!= null){
                                   Connection conn = null;
-                                  Statement stat = null;
+                                  Statement stat = null;                         
                                   conn = PolaczenieDB.getConnection();
+                                  boolean res2next;
+                                  ResultSet res2 = null;
+                                  Statement stat2 = conn.createStatement();  
                                   stat = conn.createStatement();
                                   String data = ("select * from produkt where id_produktu = " + request.getAttribute("produkt.id")+";");
                                   res = stat.executeQuery(data);                                  
-                                  res.next();%>
+                                  res.next();
+                                      String data2 = "select p.id_produktu, count(k.id_produktu) as dostepnosc  from klucze k join produkt p on k.id_produktu=p.id_produktu where p.id_produktu = " + res.getInt("id_produktu") + " and k.czy_zuzyty = 'false' group by p.id_produktu;";                                  
+                                      res2= stat2.executeQuery(data2);
+                                      if(res2.next())
+                                          res2next=true;
+                                      else
+                                          res2next=false;
+       %>
        
                                   <h1 style="text-align: center;font-size:50px; font-family: Trebuchet MS, Helvetica, sans-serif"><%out.println(res.getString("nazwa"));%></h1>
                                   <hr class="featurette-divider" style="margin-left: -10px">
+                                  <title><%out.println(res.getString("nazwa"));%></title>
                                   
                                   
 <%
@@ -120,7 +129,7 @@
             </p>
 
         <form  action="shoppingcart" name="formBuy" method="post">
-        <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="text-align: center; font-size: 26px;">Dodaj do koszyka<br><p class="lead" style="font-size: 20px;margin-bottom: -4px">
+        <button tabindex="4" name="btnBuy" class="btn btn-large btn-success "value="<%=res.getInt("id_produktu")%>" style="text-align: center; font-size: 26px;" <%if(res2next == true){%>>Dodaj do koszyka<%}else{%>disabled>Klucz niedostępny<%}%><br><p class="lead" style="font-size: 20px;margin-bottom: -4px">
         <% out.println((String.format("%.2f%n",Double.parseDouble(res.getString("cena"))))+"zł"); %></p></button></form>
         
         </div>

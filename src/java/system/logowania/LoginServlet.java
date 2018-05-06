@@ -47,6 +47,7 @@ private static final String PAGE2 = "serverError.jsp";
         resp.setCharacterEncoding("UTF-8");
         String email = req.getParameter("email");
         String haslo = req.getParameter("haslo");
+        
       
         
         
@@ -59,11 +60,11 @@ private static final String PAGE2 = "serverError.jsp";
         resp.setContentType("text/html");
     
         if(email.trim().isEmpty()){
-            req.setAttribute("errMessageEmail", "Enter email");
+            req.setAttribute("errMessageEmail", "Wprowadź adres E-mail");
         }
         
         if(haslo.trim().isEmpty()){
-            req.setAttribute("errMessageHaslo", "Enter password");
+            req.setAttribute("errMessageHaslo", "Wprowadź hasło");
         }
         
         LoginBean loginBean = new LoginBean();
@@ -74,55 +75,31 @@ private static final String PAGE2 = "serverError.jsp";
         LoginDao loginDao = new LoginDao();
 
         try {
-            String userValidate = loginDao.authenticateUser(loginBean);
-
-            if (userValidate.equals("Admin") || userValidate.equals("Pracownik") || userValidate.equals("User") ) {
+            SessionData userValidate = loginDao.authenticateUser(loginBean);
+            if (userValidate.getUprawnienia_konta().equals("Admin") || userValidate.getUprawnienia_konta().equals("Pracownik") || userValidate.getUprawnienia_konta().equals("User") ) {
               session = req.getSession(); //Creating a session
-                session.setAttribute("User", String.valueOf(email)); //setting session attribute
-                session.setAttribute("permissions", String.valueOf(userValidate));
+                session.setAttribute("User", String.valueOf(userValidate.getEmail_konta())); //setting session attribute
+                session.setAttribute("id_konta", String.valueOf(userValidate.getId_konta()));
+                session.setAttribute("telefon_konta", String.valueOf(userValidate.getTelefon_konta()));
+                session.setAttribute("permissions", String.valueOf(userValidate.getUprawnienia_konta()));
+                session.setAttribute("ranga", String.valueOf(userValidate.getUprawnienia_konta()));
+                session.setAttribute("accpass",String.valueOf(userValidate.getHaslo_konta()));
                 if((userValidate.equals("User")))
                         session.setMaxInactiveInterval(10 * 60);
 
                 req.getRequestDispatcher("index.jsp").forward(req, resp);
                  } 
              else {
-                req.setAttribute("errMessageLogowanie", userValidate);
-                
-
-                
+                req.setAttribute("errMessageLogowanie", "Podano błędne dane.");
+                req.getRequestDispatcher(PAGE).forward(req, resp);
             }
-            
-          
-            
-            
-            
+
             
         } catch (IOException e1) {
             req.setAttribute("errConn", "error with database connection");
         } catch (Exception e2) {
             req.getRequestDispatcher(PAGE2).forward(req, resp);
         }
-        try {
-            
-       
-          Connection con = null;
-            Statement statement = null;
-            ResultSet resultSet = null;
 
-            con = PolaczenieDB.getConnection();
-            statement = con.createStatement();
-            resultSet = statement.executeQuery("select id_konto, ranga from konto k join uprawnienia u on k.id_uprawnienia=u.id_uprawnienia where email='" + session.getAttribute("User") + "'");
-            resultSet.next();
-            session.setAttribute("id_konta", resultSet.getInt("id_konto"));
-            session.setAttribute("ranga", resultSet.getString("ranga"));
-            resultSet.close();
-            con.close();
-       } catch (Exception e) {
-        }
-     req.getRequestDispatcher(PAGE).include(req, resp);
-        
-    }
-
-    
-
+}
 }
