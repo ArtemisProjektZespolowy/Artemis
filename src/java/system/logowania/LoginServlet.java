@@ -79,7 +79,7 @@ private static final String PAGE2 = "serverError.jsp";
             if (userValidate.getUprawnienia_konta().equals("Admin") || userValidate.getUprawnienia_konta().equals("Pracownik") || userValidate.getUprawnienia_konta().equals("User") ) {
               session = req.getSession(); //Creating a session
                 session.setAttribute("User", String.valueOf(userValidate.getEmail_konta())); //setting session attribute
-                session.setAttribute("id_konta", String.valueOf(userValidate.getId_konta()));
+                session.setAttribute("id_konta", userValidate.getId_konta());
                 session.setAttribute("telefon_konta", String.valueOf(userValidate.getTelefon_konta()));
                 session.setAttribute("permissions", String.valueOf(userValidate.getUprawnienia_konta()));
                 session.setAttribute("ranga", String.valueOf(userValidate.getUprawnienia_konta()));

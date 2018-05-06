@@ -206,7 +206,7 @@
                                     String data10 = "select id_produktu, obraz, nazwa, platforma, wydawca, data_wydania, cena from produkt order by nazwa";
                                         res40 = stat40.executeQuery(data10);
                                         
-                                         int iteracjaS = 0;
+                                         int iteracjaS = 1000;
                                         while (res40.next()) {
                                            
                                            
