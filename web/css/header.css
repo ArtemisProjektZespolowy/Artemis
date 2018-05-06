@@ -32,3 +32,68 @@
  
 }
 
+.searchModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 20; /* Sit on top */
+    margin: auto;
+    text-align: center;
+    top: 1.7vw;
+    left: 10%;
+    width: 80%; /* Full width */
+    max-height: 70%; /* Full height */
+    overflow-y: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(255,255,255,1); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+
+
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+
+
+
+#searchTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#searchTable th, #searchTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#searchTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#searchTable tr.header, #searchTable tr:hover {
+  background-color: rgba(0,100,200,0.2);
+}

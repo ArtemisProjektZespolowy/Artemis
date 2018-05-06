@@ -1,4 +1,5 @@
 
+<%@page import="java.util.StringTokenizer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -34,7 +35,9 @@
                             <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kategoria</a>
                         <ul class="dropdown-menu" role="menu">
- <%                   Connection conn = null;
+                <%                Connection conn = null;
+                                  Statement stat40= null;
+                                  ResultSet res40 = null;
                                   ArrayList<String> kategoriaArray = new ArrayList();
                                   int i=0;
                                   Statement stat = null;
@@ -57,7 +60,7 @@
 
                             <li> <form id="<%=kategoriaArray.get(i)%>" action="kategoria" name="formKategoria" method="get">
             <a class="nav-link" name="id" onclick="<%out.println(kategoriaArray.get(i)+ "()");%>"><input name="id" type="hidden" value="<%=kategoriaArray.get(i)%>"><%=kategoriaArray.get(i)%></a></form></li>
-                        <%i++;}%>
+            <%i++;} conn.close(); %>
                         </ul>
                     </li>
                         <li class="nav-item dropdown">
@@ -103,27 +106,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="support.jsp">Kontakt</a>
                     </li>
-                    <%}%>
                     
-                    <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin") || session.getAttribute("permissions").equals("Pracownik")) ) {%>
+                    <%}%>
+                      <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin") || session.getAttribute("permissions").equals("Pracownik")) ) {%>
                       </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="raports.jsp">Raporty</a>
+                            <a class="nav-link" href="raports.jsp">Raporty</a>
                     </li>
                     <%}%>
+                 
                 </ul>
 
-               
+            
 
                 <ul class="s navbar-nav ml-auto nav-flex-icons">
-                    
+                    <li style="padding-right: 2%; padding-top: 1%;" class="nav-item">             
+                      <input id="search" class="form-control form-control-sm" type="text" placeholder="Wyszukaj" onkeyup="wyszukaj()">
+
+                    </li>
                      <%
                     Map<Bean_ID, Bean_Ilosc> koszyk = (Map<Bean_ID, Bean_Ilosc>) session.getAttribute("koszyk");
                     if (koszyk == null) {
                         koszyk = new TreeMap<>();
                     }
                     %>
-                    
+                   
                     <li class="space nav-item">
 
                         <a  href="shoppingCard.jsp" class="waves-effect waves-light fa-stack fa-1x has-badge" data-count="<%out.print(koszyk.size()); %>">
@@ -180,11 +187,152 @@
             </div>
         </nav>
     </header>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+                             
+                              
+                              
+<!--                                                          <div class="close1">-->
+                                    <div id="searchModal" class="searchModal">
+                                         <table style="margin-top: 3%;"  id="searchTable" class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          <th></th>
+                                          <th>Gra</th>
+                                          <th>Platforma</th>
+                                          <th>Wydawca</th>
+                                          <th>Data wydania</th>
+                                          <th>Cena</th>
+
+                                      </tr>
+                                  </thead>
+                                  <%
+                                    conn = PolaczenieDB.getConnection();    
+                                    stat40 = conn.createStatement();
+                                    String data10 = "select id_produktu, obraz, nazwa, platforma, wydawca, data_wydania, cena from produkt order by nazwa";
+                                        res40 = stat40.executeQuery(data10);
+                                        
+                                         int iteracjaS = 0;
+                                        while (res40.next()) {
+                                           
+                                           
+                                  %>
+                                     <script>
+
+                            <%out.println("function " + "updateS" + iteracjaS + "()");%> {
+                                document.getElementById("<%=iteracjaS%>").submit();
+                            }
+                        </script>
+                         <% String obrazek = res40.getString("obraz");
+                               StringTokenizer stringTokenizer = new StringTokenizer(obrazek, ", ");
+                               if(stringTokenizer.hasMoreElements())
+                               obrazek=stringTokenizer.nextToken();
+                            %>
+                                  <form id="<%=iteracjaS%>" action="more" name="formMore" method="get">
+                                  <tbody onclick="<%out.println("updateS" + iteracjaS + "()");%>" >  
+                                      <tr  >     
+                                          
+                                          <td  style="font-weight: bold;"><img  src="<%=obrazek%>"/></td>
+                                          <td  style="font-weight: bold; padding-top: 7vh;"><%=res40.getString("nazwa")%></td>
+                                          <td  style="font-weight: bold;padding-top: 7vh;"><%=res40.getString("platforma")%></td>
+                                          <td  style="font-weight: bold;padding-top: 7vh;"><%=res40.getString("wydawca")%></td>
+                                          <td  style="font-weight: bold;padding-top: 7vh;"><%=res40.getString("data_wydania")%></td>
+                                          <td style="font-weight: bold;padding-top: 7vh;"><%=res40.getFloat("cena")%>zł</td>
+                                          <input name="id" type="hidden" value="<%=res40.getInt("id_produktu")%>">
+                                    </td>
+                                      </tr>
+                                  </tbody>
+                                  </form>
+                                  <%  iteracjaS++;} stat40.close(); res40.close(); conn.close();  %> 
+                              </table>
+<!--                                    </div>-->
+                                
+                            
+                            </div>
+                              
+                              
+                                <script>
+                var searchModalClass = document.getElementById('searchModal');
+
+                var btn = document.getElementById("search");
+            
+                var span = document.getElementsByClassName("close1")[0];
+                btn.onkeyup = function () {
+                    searchModalClass.style.display = "block";
+                }
+        
+                
+                btn.onkeyup = function () {
+                    if(btn.is)
+               
+                }
+                window.onclick = function (event) {
+                    if (event.target == searchModalClass) {
+                        searchModalClass.style.display = "none";
+                    }
+                     
+                }
+            </script>
+                                        <script>
+                                        $( function() {
+                                          var availableTags = [
+                                                  <%
+                conn = PolaczenieDB.getConnection();    
+                stat40 = conn.createStatement();
+                String data40 = "select nazwa, wydawca from produkt order by nazwa";
+                    res40 = stat40.executeQuery(data40);
+                    while (res40.next()) {
+                         out.print('"' + res40.getString("nazwa") + '"' + ",");
+                    }
+                             conn.close(); %>
+                                          ];
+                                          $( "#searchTable" ).autocomplete({
+                                            source: availableTags
+                                          });
+                                        } );
+                                        </script>
+                                        
+                                        <script>
+                             
+                                  
+                                    $("#search").keyup(function(){
+                                       
+                                       if($('#search').val() == ''){
+                                            $('#searchModal').hide();
+                                           }else{$('#searchModal').show();}
+                                          });
+
+                                        </script>
+                                        
+                                                                <script>
+                                    
+                      function wyszukaj() {
+                          
+                        var input, filter, table, tr, td, i;
+                        input = document.getElementById("search");
+                        filter = input.value.toUpperCase();
+                        table = document.getElementById("searchTable");
+                        tr = table.getElementsByTagName("tr");
+                        for (i = 0; i < tr.length; i++) {
+                          td = tr[i].getElementsByTagName("td")[1];
+                          if (td) {
+                            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                              tr[i].style.display = "";
+                            } else {
+                              tr[i].style.display = "none";
+                            }
+                          }       
+                        }
+                      }
+                       
+                      </script> 
+                               
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="https://mdbootstrap.com/previews/docs/latest/js/bootstrap.min.js"></script>
     <script src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
     <script src="https://mdbootstrap.com/previews/docs/latest/js/jarallax.js"></script>
 
-    new WOW().init();
+
 </script> 
