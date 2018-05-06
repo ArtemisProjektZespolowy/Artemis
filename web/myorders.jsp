@@ -85,6 +85,7 @@ $(document).ready(function(){
                                         </div>
                                         <%
                                     }else
+                                    res = null;
                                     res = stat.executeQuery("select distinct zp.seria_zamowienia,zk.suma, zk.data_zamowienia from zp join zk on zk.id_zp=zp.id_zp where zk.id_konto = "+session.getAttribute("id_konta")+"order by zk.data_zamowienia desc;");
 
                                     
@@ -110,7 +111,7 @@ $(document).ready(function(){
                     <%  
                     Statement stat2 = conn.createStatement();
                     double suma = 0;
-                    ResultSet res2 = stat2.executeQuery("select p.nazwa,p.platforma, p.cena, zp.kod_gry from produkt p join zp on p.id_produktu=zp.id_produktu join zk on zk.id_zp=zp.id_zp where zp.seria_zamowienia= "+String.valueOf(res.getInt("seria_zamowienia")) +";");
+                    ResultSet res2 = stat2.executeQuery("select p.nazwa,p.platforma, p.cena, zp.kod_gry from produkt p join zp on p.id_produktu=zp.id_produktu where zp.seria_zamowienia= "+String.valueOf(res.getInt("seria_zamowienia")) +";");
                     while(res2.next()){
                     suma+=res2.getDouble("cena");
                     %>
