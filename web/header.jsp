@@ -111,6 +111,12 @@
                         <li class="nav-item">	
                           <a class="nav-link" href="raports.jsp">Raporty</a>	
                   </li>	
+                  <li class="nav-item">	
+                          <a class="nav-link" href="all_products">Menedżer produktów</a>	
+                  </li>
+                  <li class="nav-item">	
+                          <a class="nav-link" href="all_accounts">Menedżer kont</a>	
+                  </li>	
                   <%}%>
                 </ul>
 
