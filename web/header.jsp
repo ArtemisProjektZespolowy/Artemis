@@ -106,18 +106,23 @@
                         <a class="nav-link" href="support.jsp">Kontakt</a>
                     </li>
                     <%} %>
-               <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin") || session.getAttribute("permissions").equals("Pracownik")) ) {%>	
-                      </li>	
-                        <li class="nav-item">	
-                          <a class="nav-link" href="raports.jsp">Raporty</a>	
-                  </li>	
-                  <li class="nav-item">	
-                          <a class="nav-link" href="all_products">Menedżer produktów</a>	
-                  </li>
-                  <li class="nav-item">	
-                          <a class="nav-link" href="all_accounts">Menedżer kont</a>	
-                  </li>	
-                  <%}%>
+       
+                    <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin") || session.getAttribute("permissions").equals("Pracownik")) ) {%>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Panel administracyjny</a>
+                        <ul class="dropdown-menu" style="transform: translate(-50%, 0%)" role="menu">
+                             <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin") || session.getAttribute("permissions").equals("Pracownik")) ) {%>
+                            <li><a class="nav-link" href="all_products">Menedżer produktów</a></li>
+                            <li><a class="nav-link" href="raports.jsp">Raporty</a></li>
+                            <%}%>
+                            <% if (session.getAttribute("permissions") != null && (session.getAttribute("permissions").equals("Admin")) ) {%>
+                            <li>  <a class="nav-link" href="all_accounts">Menedżer kont</a></li>
+                            <%}%>
+                        </ul>
+                    </li>
+                  
+                   <%}%>
+                  
                 </ul>
 
                
