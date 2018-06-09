@@ -19,7 +19,7 @@ public class DBUtils {
     public static PreparedStatement getPreparedStatement(String sql) throws ClassNotFoundException, SQLException {
         PreparedStatement ps = null;
         Class.forName("org.postgresql.Driver");
-        String url = "jdbc:postgresql://sigma.pwsz.krosno.pl:5432/projekt_zespołowy_Artemis";
+        String url = "jdbc:postgresql://10.10.11.7/projekt_zespołowy_Artemis";
         String user = "postgres";
         String pass = "26!D$196eF85";
 

@@ -98,7 +98,9 @@ private static final String PAGE2 = "serverError.jsp";
         } catch (IOException e1) {
             req.setAttribute("errConn", "error with database connection");
         } catch (Exception e2) {
-            req.getRequestDispatcher(PAGE2).forward(req, resp);
+            req.setAttribute("errMessageLogowanie", "Podany login lub hasło jest nieprawidłowy");
+            req.getRequestDispatcher(PAGE).forward(req, resp);
+            
         }
 
 }

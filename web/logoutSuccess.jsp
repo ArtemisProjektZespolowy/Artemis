@@ -15,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>logout</title>
+        <title>loginFail</title>
 
         <!-- Bootstrap core CSS -->
         
